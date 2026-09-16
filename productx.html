@@ -1,0 +1,5758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+<title>Luxury Moroccan Product</title>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<style>
+
+:root{
+    --ink:#211b16;
+    --brown:#49372a;
+    --brown-dark:#2d2119;
+    --taupe:#8b7b6a;
+    --sand:#cdbb9f;
+    --cream:#f5f0e8;
+    --paper:#fbfaf7;
+    --gold:#b18b52;
+    --gold-light:#d8c19a;
+    --line:rgba(47,36,27,.12);
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:
+        linear-gradient(
+            180deg,
+            #fcfbf8 0%,
+            #f5f1eb 100%
+        );
+    color:var(--ink);
+    font-family:
+        "DM Sans",
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    padding-top:194px;
+}
+
+.product-page{
+    width:min(1280px,92%);
+    margin:auto;
+    padding:38px 0 80px;
+}
+
+.product-topline{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:30px;
+    color:var(--taupe);
+    font-size:10px;
+    font-weight:600;
+    letter-spacing:2.2px;
+    text-transform:uppercase;
+}
+
+.breadcrumb{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.breadcrumb span{
+    opacity:.4;
+}
+
+.heritage-mark{
+    display:flex;
+    align-items:center;
+    gap:9px;
+}
+
+.heritage-mark::before{
+    content:"";
+    width:25px;
+    height:1px;
+    background:var(--gold);
+}
+
+.product-layout{
+    display:grid;
+    grid-template-columns:
+        minmax(0,1.08fr)
+        minmax(380px,.92fr);
+    gap:75px;
+    align-items:start;
+}
+
+.gallery{
+    min-width:0;
+}
+
+.main-image{
+    position:relative;
+    width:100%;
+    aspect-ratio:1 / 1.04;
+    overflow:hidden;
+    background:#eee9e1;
+    border-radius:4px;
+    box-shadow:
+        0 25px 70px rgba(40,30,20,.10);
+}
+
+.main-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:
+        opacity .25s ease,
+        transform .7s cubic-bezier(.2,.7,.2,1);
+}
+
+.main-image:hover img{
+    transform:scale(1.025);
+}
+
+.motif{
+    position:absolute;
+    z-index:2;
+    width:54px;
+    height:54px;
+    opacity:.75;
+    pointer-events:none;
+}
+
+.motif::before,
+.motif::after{
+    content:"";
+    position:absolute;
+    width:25px;
+    height:25px;
+    border-color:
+        rgba(177,139,82,.75);
+    border-style:solid;
+}
+
+.motif::before{
+    left:0;
+    top:0;
+    border-width:
+        1px 0 0 1px;
+}
+
+.motif::after{
+    right:0;
+    bottom:0;
+    border-width:
+        0 1px 1px 0;
+}
+
+.motif-left{
+    left:20px;
+    top:20px;
+}
+
+.motif-right{
+    right:20px;
+    bottom:20px;
+}
+
+.image-number{
+    position:absolute;
+    right:20px;
+    top:20px;
+    z-index:3;
+    display:flex;
+    align-items:center;
+    gap:7px;
+    padding:8px 11px;
+    background:
+        rgba(251,250,247,.82);
+    backdrop-filter:
+        blur(15px);
+    -webkit-backdrop-filter:
+        blur(15px);
+    font-size:10px;
+    letter-spacing:1px;
+    color:var(--brown);
+}
+
+.thumbnails{
+    display:grid;
+    grid-template-columns:
+        repeat(4,1fr);
+    gap:12px;
+    margin-top:14px;
+}
+
+.thumbnail{
+    position:relative;
+    aspect-ratio:1;
+    border:0;
+    padding:0;
+    overflow:hidden;
+    background:#eee9e1;
+    cursor:pointer;
+    border-radius:3px;
+}
+
+.thumbnail img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    opacity:.62;
+    transition:.35s ease;
+}
+
+.thumbnail:hover img{
+    opacity:1;
+    transform:scale(1.05);
+}
+
+.thumbnail.active{
+    outline:
+        1px solid var(--brown);
+    outline-offset:3px;
+}
+
+.thumbnail.active img{
+    opacity:1;
+}
+
+.product-information{
+    padding-top:16px;
+    max-width:570px;
+}
+
+.category{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:20px;
+    color:var(--gold);
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+}
+
+.category::after{
+    content:"";
+    width:42px;
+    height:1px;
+    background:var(--gold);
+}
+
+.product-title{
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:
+        clamp(38px,4.1vw,56px);
+    line-height:.94;
+    font-weight:500;
+    letter-spacing:-1.6px;
+    color:var(--ink);
+    margin-bottom:21px;
+}
+
+.decorative-mark{
+    display:flex;
+    align-items:center;
+    margin-bottom:22px;
+    color:var(--gold);
+    font-size:14px;
+    letter-spacing:7px;
+}
+
+.decorative-mark::before,
+.decorative-mark::after{
+    content:"";
+    height:1px;
+    background:var(--sand);
+    width:32px;
+    margin-right:9px;
+}
+
+.decorative-mark::after{
+    margin-left:9px;
+    margin-right:0;
+}
+
+.price-row{
+    display:flex;
+    align-items:baseline;
+    gap:8px;
+    margin-bottom:18px;
+}
+
+.price{
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:36px;
+    line-height:1;
+    font-weight:600;
+    color:var(--brown);
+}
+
+.currency{
+    font-size:10px;
+    font-weight:700;
+    color:var(--taupe);
+    letter-spacing:1.5px;
+}
+
+.color-selector{
+    margin-bottom:24px;
+}
+
+.color-label-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:11px;
+}
+
+.color-label{
+    font-size:10px;
+    font-weight:700;
+    letter-spacing:1.7px;
+    text-transform:uppercase;
+    color:var(--brown);
+}
+
+.selected-color{
+    font-size:10px;
+    color:var(--taupe);
+    letter-spacing:.4px;
+}
+
+.color-slider-wrapper{
+    position:relative;
+    width:100%;
+    overflow:hidden;
+}
+
+.color-slider{
+    display:flex;
+    align-items:center;
+    gap:13px;
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding:4px 4px 8px;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    cursor:grab;
+}
+
+.color-slider::-webkit-scrollbar{
+    display:none;
+}
+
+.color-slider:active{
+    cursor:grabbing;
+}
+
+.color-option{
+    position:relative;
+    flex:0 0 auto;
+    width:57px;
+    height:57px;
+    padding:3px;
+    border:1px solid transparent;
+    border-radius:50%;
+    background:transparent;
+    cursor:pointer;
+    transition:
+        transform .3s ease,
+        border-color .3s ease,
+        box-shadow .3s ease;
+}
+
+.color-option img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+    border-radius:50%;
+    transition:
+        transform .35s ease,
+        filter .35s ease;
+}
+
+.color-option:hover{
+    transform:translateY(-2px);
+    border-color:
+        rgba(177,139,82,.45);
+}
+
+.color-option:hover img{
+    transform:scale(1.04);
+}
+
+.color-option.active{
+    border-color:var(--brown);
+    box-shadow:
+        0 0 0 2px var(--paper),
+        0 0 0 3px var(--gold);
+}
+
+.color-option.active img{
+    transform:scale(.94);
+}
+
+.color-option::after{
+    content:"";
+    position:absolute;
+    left:50%;
+    bottom:-6px;
+    width:3px;
+    height:3px;
+    border-radius:50%;
+    background:transparent;
+    transform:
+        translateX(-50%);
+    transition:
+        background .25s ease;
+}
+
+.color-option.active::after{
+    background:var(--gold);
+}
+
+.description{
+    font-size:14px;
+    line-height:1.85;
+    color:#70675e;
+    max-width:525px;
+    margin-bottom:27px;
+}
+
+.image-add-to-cart{
+    position:relative;
+    display:block;
+    width:100%;
+    height:95px;
+    padding:0;
+    margin:8px 0 0;
+    border:0;
+    border-radius:10px;
+    overflow:hidden;
+    cursor:pointer;
+    background:#17110d;
+    box-shadow:
+        0 4px 10px rgba(0,0,0,.10),
+        0 10px 22px rgba(35,25,18,.13);
+    -webkit-tap-highlight-color:transparent;
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+}
+
+.image-add-to-cart img{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    filter:
+        brightness(.55)
+        contrast(1.06)
+        saturate(.86);
+    transition:
+        transform .55s ease,
+        filter .35s ease;
+}
+
+.image-add-to-cart::before{
+    content:"";
+    position:absolute;
+    z-index:1;
+    inset:0;
+    background:
+        linear-gradient(
+            180deg,
+            rgba(8,6,4,.25),
+            rgba(8,6,4,.48)
+        );
+}
+
+.image-add-to-cart::after{
+    content:"";
+    position:absolute;
+    z-index:2;
+    inset:0;
+    border-radius:10px;
+    box-shadow:
+        inset 0 0 20px rgba(0,0,0,.18),
+        inset 0 -8px 18px rgba(0,0,0,.18);
+    pointer-events:none;
+}
+
+.image-cart-overlay{
+    position:absolute;
+    z-index:4;
+    inset:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+}
+
+.image-cart-title{
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:32px;
+    line-height:1;
+    font-weight:600;
+    letter-spacing:-.4px;
+    color:#fff;
+    white-space:nowrap;
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.8),
+        0 5px 12px rgba(0,0,0,.45);
+    transition:
+        transform .3s ease,
+        text-shadow .3s ease;
+}
+
+.image-cart-line{
+    position:relative;
+    width:32px;
+    height:1px;
+    margin-top:8px;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d8bd8c,
+            transparent
+        );
+    opacity:.85;
+}
+
+.image-cart-line::before,
+.image-cart-line::after{
+    content:"";
+    position:absolute;
+    top:50%;
+    width:3px;
+    height:3px;
+    border:1px solid #d8bd8c;
+    transform:
+        translateY(-50%)
+        rotate(45deg);
+}
+
+.image-cart-line::before{
+    left:-2px;
+}
+
+.image-cart-line::after{
+    right:-2px;
+}
+
+.image-add-to-cart:hover{
+    transform:translateY(-2px);
+    box-shadow:
+        0 6px 12px rgba(0,0,0,.12),
+        0 12px 25px rgba(35,25,18,.16);
+}
+
+.image-add-to-cart:hover img{
+    transform:scale(1.035);
+    filter:
+        brightness(.49)
+        contrast(1.08)
+        saturate(.82);
+}
+
+.image-add-to-cart:hover .image-cart-title{
+    transform:scale(1.02);
+    text-shadow:
+        0 2px 4px rgba(0,0,0,.9),
+        0 6px 14px rgba(0,0,0,.55);
+}
+
+.image-add-to-cart:active{
+    transform:scale(.985);
+}
+
+.details{
+    border-top:
+        1px solid var(--line);
+    border-bottom:
+        1px solid var(--line);
+    margin-top:30px;
+    margin-bottom:30px;
+}
+
+.detail{
+    min-height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:
+        1px solid var(--line);
+    font-size:12px;
+}
+
+.detail:last-child{
+    border-bottom:0;
+}
+
+.detail-label{
+    color:var(--taupe);
+}
+
+.detail-value{
+    color:var(--brown);
+    font-weight:600;
+    text-align:right;
+}
+
+.heritage{
+    display:flex;
+    gap:18px;
+    padding:19px 20px;
+    background:var(--cream);
+    border-left:
+        2px solid var(--gold);
+}
+
+.heritage-symbol{
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:29px;
+    color:var(--gold);
+    line-height:1;
+}
+
+.heritage-content strong{
+    display:block;
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:18px;
+    color:var(--brown);
+    margin-bottom:3px;
+}
+
+.heritage-content span{
+    display:block;
+    font-size:11px;
+    line-height:1.6;
+    color:var(--taupe);
+}
+
+/* =====================================================
+   SAME PRODUCTS
+===================================================== */
+
+.same-products{
+    position:relative;
+    margin-top:100px;
+    padding-top:38px;
+    border-top:
+        1px solid var(--line);
+}
+
+.same-products-header{
+    display:flex;
+    align-items:flex-end;
+    justify-content:space-between;
+    margin-bottom:28px;
+}
+
+.same-products-heading{
+    position:relative;
+}
+
+.same-products-kicker{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    margin-bottom:9px;
+    color:var(--gold);
+    font-size:9px;
+    font-weight:700;
+    letter-spacing:2.7px;
+    text-transform:uppercase;
+}
+
+.same-products-kicker::after{
+    content:"";
+    width:35px;
+    height:1px;
+    background:var(--gold);
+}
+
+.same-products-title{
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:
+        clamp(35px,4vw,48px);
+    line-height:.95;
+    font-weight:500;
+    letter-spacing:-1.2px;
+    color:var(--ink);
+}
+
+.same-products-subtitle{
+    margin-top:8px;
+    font-size:11px;
+    color:var(--taupe);
+    letter-spacing:.2px;
+}
+
+.same-products-controls{
+    display:flex;
+    gap:8px;
+    flex-shrink:0;
+}
+
+.same-product-arrow{
+    width:42px;
+    height:42px;
+    border:1px solid
+        rgba(73,55,42,.18);
+    background:
+        rgba(251,250,247,.75);
+    color:var(--brown);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    transition:
+        background .3s ease,
+        color .3s ease,
+        border-color .3s ease,
+        transform .3s ease;
+    -webkit-tap-highlight-color:transparent;
+}
+
+.same-product-arrow:hover{
+    background:var(--brown);
+    color:#fff;
+    border-color:var(--brown);
+    transform:translateY(-2px);
+}
+
+.same-product-arrow:active{
+    transform:scale(.94);
+}
+
+.same-product-arrow svg{
+    width:15px;
+    height:15px;
+    stroke:currentColor;
+    stroke-width:1.5;
+    fill:none;
+}
+
+.same-products-viewport{
+    position:relative;
+    overflow:hidden;
+    width:100%;
+}
+
+.same-products-track{
+    display:flex;
+    gap:18px;
+    overflow-x:auto;
+    overflow-y:hidden;
+    scroll-behavior:smooth;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    cursor:grab;
+    padding:
+        4px 4px 16px;
+}
+
+.same-products-track::-webkit-scrollbar{
+    display:none;
+}
+
+.same-products-track:active{
+    cursor:grabbing;
+}
+
+.same-product-card{
+    position:relative;
+    flex:0 0
+        calc(
+            (100% - 54px) / 4
+        );
+    min-width:0;
+    text-decoration:none;
+    color:inherit;
+    display:block;
+    background:transparent;
+}
+
+.same-product-image{
+    position:relative;
+    width:100%;
+    aspect-ratio:.88 / 1;
+    overflow:hidden;
+    background:#eee9e1;
+    border-radius:4px;
+    box-shadow:
+        0 12px 35px
+        rgba(40,30,20,.07);
+    margin-bottom:14px;
+}
+
+.same-product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transition:
+        transform .65s
+        cubic-bezier(.2,.7,.2,1),
+        filter .4s ease;
+}
+
+.same-product-card:hover
+.same-product-image img{
+    transform:scale(1.055);
+    filter:
+        saturate(.94)
+        contrast(1.02);
+}
+
+.same-product-image::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+        linear-gradient(
+            180deg,
+            transparent 55%,
+            rgba(35,25,18,.08)
+        );
+    pointer-events:none;
+}
+
+.same-product-number{
+    position:absolute;
+    z-index:3;
+    top:11px;
+    left:11px;
+    width:28px;
+    height:28px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        rgba(251,250,247,.84);
+    backdrop-filter:
+        blur(12px);
+    -webkit-backdrop-filter:
+        blur(12px);
+    color:var(--brown);
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:14px;
+    font-weight:600;
+}
+
+/* =====================================================
+   QUICK VIEW — EYE ICON
+===================================================== */
+
+.same-product-view{
+    position:absolute;
+    z-index:4;
+    right:11px;
+    bottom:11px;
+    width:32px;
+    height:32px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:50%;
+    background:
+        rgba(251,250,247,.9);
+    backdrop-filter:
+        blur(12px);
+    -webkit-backdrop-filter:
+        blur(12px);
+    color:var(--brown);
+    opacity:0;
+    transform:
+        translateY(7px);
+    transition:
+        opacity .3s ease,
+        transform .3s ease;
+}
+
+.same-product-card:hover
+.same-product-view{
+    opacity:1;
+    transform:
+        translateY(0);
+}
+
+/* EYE */
+
+.same-product-view svg{
+    width:15px;
+    height:15px;
+    stroke:currentColor;
+    stroke-width:1.5;
+    fill:none;
+}
+
+.same-product-category{
+    color:var(--gold);
+    font-size:8px;
+    font-weight:700;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
+    margin-bottom:5px;
+}
+
+.same-product-name{
+    font-family:
+        "Cormorant Garamond",
+        Georgia,
+        serif;
+    font-size:22px;
+    line-height:.98;
+    font-weight:600;
+    color:var(--brown-dark);
+    margin-bottom:7px;
+}
+
+.same-product-bottom{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.same-product-price{
+    font-size:12px;
+    font-weight:700;
+    color:var(--brown);
+}
+
+.same-product-line{
+    width:0;
+    height:1px;
+    margin-top:10px;
+    background:
+        linear-gradient(
+            90deg,
+            var(--gold),
+            transparent
+        );
+    transition:
+        width .45s ease;
+}
+
+.same-product-card:hover
+.same-product-line{
+    width:55%;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media(max-width:850px){
+
+    body{
+        padding-top:16.58vw;
+    }
+
+    .product-page{
+        width:92%;
+        padding-top:20px;
+    }
+
+    .product-topline{
+        margin-bottom:20px;
+        font-size:8px;
+        letter-spacing:1.5px;
+    }
+
+    .product-layout{
+        display:block;
+    }
+
+    .gallery{
+        margin-bottom:36px;
+    }
+
+    .product-information{
+        max-width:none;
+        padding:0 2px;
+    }
+
+    .product-title{
+        font-size:39px;
+        line-height:.96;
+        letter-spacing:-1.25px;
+        margin-bottom:18px;
+    }
+
+    .decorative-mark{
+        margin-bottom:20px;
+    }
+
+    .price{
+        font-size:33px;
+    }
+
+    .description{
+        font-size:14px;
+        line-height:1.8;
+    }
+
+    .color-option{
+        width:53px;
+        height:53px;
+    }
+
+    .color-slider{
+        gap:11px;
+        padding-left:3px;
+        padding-right:3px;
+    }
+
+    .image-add-to-cart{
+        height:82px;
+        margin-top:6px;
+        border-radius:9px;
+    }
+
+    .image-cart-title{
+        font-size:28px;
+        letter-spacing:-.3px;
+    }
+
+    .image-cart-line{
+        width:28px;
+        margin-top:7px;
+    }
+
+    .same-products{
+        margin-top:72px;
+        padding-top:30px;
+    }
+
+    .same-products-header{
+        align-items:flex-end;
+        margin-bottom:22px;
+    }
+
+    .same-products-title{
+        font-size:35px;
+    }
+
+    .same-products-subtitle{
+        font-size:10px;
+        max-width:230px;
+        line-height:1.5;
+    }
+
+    .same-products-controls{
+        gap:6px;
+    }
+
+    .same-product-arrow{
+        width:36px;
+        height:36px;
+    }
+
+    .same-products-track{
+        gap:13px;
+        padding-left:2px;
+        padding-right:2px;
+    }
+
+    .same-product-card{
+        flex:0 0
+            calc(
+                (100% - 13px) / 2
+            );
+    }
+
+    .same-product-image{
+        margin-bottom:11px;
+        border-radius:4px;
+    }
+
+    .same-product-name{
+        font-size:19px;
+    }
+
+    .same-product-category{
+        font-size:7px;
+        letter-spacing:1.5px;
+    }
+
+    .same-product-price{
+        font-size:11px;
+    }
+
+    .same-product-view{
+        opacity:1;
+        transform:none;
+        width:29px;
+        height:29px;
+    }
+
+}
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media(max-width:390px){
+
+    .product-title{
+        font-size:36px;
+        letter-spacing:-1px;
+    }
+
+    .price{
+        font-size:31px;
+    }
+
+    .color-option{
+        width:49px;
+        height:49px;
+    }
+
+    .image-add-to-cart{
+        height:76px;
+    }
+
+    .image-cart-title{
+        font-size:26px;
+    }
+
+    .image-cart-line{
+        width:25px;
+    }
+
+    .same-products{
+        margin-top:62px;
+    }
+
+    .same-products-title{
+        font-size:32px;
+    }
+
+    .same-products-subtitle{
+        display:none;
+    }
+
+    .same-product-card{
+        flex-basis:
+            calc(
+                (100% - 11px) / 2
+            );
+    }
+
+    .same-products-track{
+        gap:11px;
+    }
+
+    .same-product-name{
+        font-size:18px;
+    }
+
+    .same-product-arrow{
+        width:34px;
+        height:34px;
+    }
+}
+
+/* =====================================================
+   NAVBAR STYLES
+===================================================== */
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 194px;
+    margin-top: 0;
+    background: transparent;
+    border-bottom: 2px solid transparent;
+    z-index: 1000;
+    transition: background 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        border-color 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+        backdrop-filter 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(24px) saturate(1.4);
+    -webkit-backdrop-filter: blur(24px) saturate(1.4);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.navbar.with-sticky {
+    top: 35px;
+}
+
+.logo-image {
+    filter: brightness(0) invert(1) drop-shadow(0 2px 20px rgba(255, 255, 255, 0.2));
+    transition: filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar.scrolled .logo-image {
+    filter: brightness(1) invert(0) drop-shadow(0 2px 8px rgba(0, 0, 0, 0.05));
+}
+
+.menu-button {
+    position: absolute;
+    left: 60px;
+    top: 84px;
+    width: 60px;
+    height: 45px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.menu-line {
+    width: 100%;
+    height: 3px;
+    background: #ffffff;
+    border-radius: 2px;
+    transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.menu-line-center {
+    width: 60%;
+    height: 3px;
+    background: #A29683;
+    border-radius: 2px;
+    transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    align-self: center;
+}
+
+.navbar.scrolled .menu-line {
+    background: #1a1a1a;
+}
+
+.navbar.scrolled .menu-line-center {
+    background: #A29683;
+}
+
+.search {
+    position: absolute;
+    left: 953px;
+    top: 71px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    z-index: 15;
+}
+
+.search-circle {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 40px;
+    height: 40px;
+    border: 2.5px solid #ffffff;
+    border-radius: 50%;
+    transition: border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar.scrolled .search-circle {
+    border-color: #1a1a1a;
+}
+
+.search-handle {
+    position: absolute;
+    left: 31px;
+    top: 37px;
+    width: 22px;
+    height: 2.5px;
+    background: #ffffff;
+    transform: rotate(45deg);
+    transform-origin: left center;
+    transition: background 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.navbar.scrolled .search-handle {
+    background: #1a1a1a;
+}
+
+.cart {
+    position: absolute;
+    left: 1045px;
+    top: 61px;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.3s ease;
+}
+
+.cart .bag-icon {
+    width: 56px;
+    height: 56px;
+    display: block;
+    overflow: visible;
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cart:hover .bag-icon {
+    transform: translateY(-2px) scale(1.035);
+}
+
+.navbar.scrolled .cart {
+    color: #1a1a1a;
+}
+
+.cart-badge {
+    position: absolute;
+    top: -2px;
+    right: -6px;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 4px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #1a1a1a;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1;
+    text-align: center;
+    letter-spacing: 0;
+    z-index: 20;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    transition: background 0.5s ease, color 0.5s ease, transform 0.3s ease;
+}
+
+.cart:hover .cart-badge {
+    transform: scale(1.05);
+}
+
+.navbar.scrolled .cart-badge {
+    background: #1a1a1a;
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.logo-link {
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    z-index: 10;
+    cursor: pointer;
+    padding: 5px 20px;
+    width: auto;
+    height: auto;
+}
+
+.logo-image {
+    height: 220px;
+    width: auto;
+    display: block;
+    transition: transform 0.3s ease, opacity 0.3s ease, filter 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    object-fit: contain;
+    max-height: 90%;
+    filter: brightness(0) invert(1) drop-shadow(0 2px 20px rgba(255, 255, 255, 0.2));
+}
+
+.logo-image:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+}
+
+@media (max-width: 1170px) {
+    .navbar {
+        height: 16.58vw;
+        margin-top: 0;
+    }
+
+    .menu-button {
+        left: 5.128vw;
+        top: 7.18vw;
+        width: 5.128vw;
+        height: 3.85vw;
+    }
+
+    .menu-line {
+        width: 5.128vw;
+        height: 0.256vw;
+    }
+
+    .menu-line-center {
+        width: 3.08vw;
+        height: 0.256vw;
+    }
+
+    .search {
+        left: 81.453vw;
+        top: 6.07vw;
+        width: 4.274vw;
+        height: 4.274vw;
+    }
+
+    .search-circle {
+        width: 3.419vw;
+        height: 3.419vw;
+        border-width: 0.214vw;
+    }
+
+    .search-handle {
+        left: 2.65vw;
+        top: 3.16vw;
+        width: 1.88vw;
+        height: 0.214vw;
+    }
+
+    .cart {
+        left: 88.9vw;
+        top: 5.0vw;
+        width: 7vw;
+        height: 7vw;
+    }
+
+    .cart .bag-icon {
+        width: 6.1vw;
+        height: 6.1vw;
+    }
+
+    .cart-badge {
+        min-width: 20px;
+        height: 20px;
+        padding: 0 4px;
+        top: -4px;
+        right: -8px;
+        font-size: 12px;
+    }
+
+    .logo-image {
+        height: 16vw;
+        max-height: 220px;
+        min-height: 100px;
+    }
+}
+
+@media (max-width: 768px) {
+    .logo-image {
+        height: 17vw;
+        max-height: 18px;
+        min-height: 80px;
+    }
+
+    .cart-badge {
+        font-size: 12px;
+        min-width: 18px;
+        height: 18px;
+        top: -3px;
+        right: -6px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-image {
+        height: 17vw;
+        max-height: 130px;
+        min-height: 60px;
+    }
+
+    .cart-badge {
+        font-size: 11px;
+        min-width: 16px;
+        height: 16px;
+        top: -2px;
+        right: -5px;
+    }
+}
+
+/* =====================================================
+   SEARCH OVERLAY
+===================================================== */
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: rgba(26, 22, 19, 0.45);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+        visibility 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.search-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.search-window {
+    width: min(850px, calc(100% - 24px));
+    max-height: calc(100vh - 70px);
+    margin: 35px auto 0;
+    border-radius: 30px;
+    overflow: hidden;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(249, 246, 242, 0.98));
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    box-shadow: 0 40px 120px rgba(0, 0, 0, 0.28), 0 0 0 1px rgba(91, 72, 57, 0.04);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transform: translateY(40px) scale(0.92) rotateX(8deg);
+    opacity: 0;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    perspective: 1200px;
+    transform-style: preserve-3d;
+}
+
+.search-overlay.active .search-window {
+    transform: translateY(0) scale(1) rotateX(0deg);
+    opacity: 1;
+}
+
+.search-overlay.closing .search-window {
+    transform: translateY(-30px) scale(0.88) rotateX(-5deg);
+    opacity: 0;
+    transition: transform 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53),
+        opacity 0.5s cubic-bezier(0.55, 0.085, 0.68, 0.53);
+}
+
+.search-header {
+    padding: 18px 18px 16px;
+    border-bottom: 1px solid rgba(94, 78, 65, 0.08);
+    position: relative;
+}
+
+.search-header::after {
+    content: "";
+    position: absolute;
+    left: 8%;
+    right: 8%;
+    bottom: -1px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(143, 108, 78, 0.35), transparent);
+}
+
+.search-input-container {
+    height: 68px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    padding-right: 55px;
+    background: linear-gradient(135deg, #faf8f5, #f3eee8);
+    border: 1px solid rgba(103, 83, 67, 0.10);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+    position: relative;
+    transition: 0.35s ease;
+}
+
+.search-input-container:focus-within {
+    border-color: rgba(123, 91, 65, 0.25);
+    box-shadow: 0 0 0 4px rgba(133, 100, 72, 0.07), inset 0 1px 1px rgba(255, 255, 255, 0.9);
+}
+
+.main-search-icon {
+    width: 23px;
+    height: 23px;
+    color: #67594f;
+    margin: 0 14px 0 4px;
+    flex-shrink: 0;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-family: inherit;
+    font-size: 17px;
+    font-weight: 500;
+    color: #302a25;
+}
+
+.search-input::placeholder {
+    color: #a3988e;
+}
+
+.clear-search {
+    width: 34px;
+    height: 34px;
+    border: none;
+    border-radius: 50%;
+    background: #e9e2da;
+    color: #74675c;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.25s ease;
+    flex-shrink: 0;
+}
+
+.clear-search:hover {
+    background: #302a25;
+    color: white;
+    transform: rotate(90deg);
+}
+
+.close-search {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 38px;
+    height: 38px;
+    border: none;
+    border-radius: 50%;
+    background: #f4efe9;
+    border: 1px solid rgba(103, 83, 67, 0.10);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
+    color: #75695e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    transition: background 0.25s ease, color 0.25s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.close-search:hover {
+    background: #302a25;
+    color: white;
+    transform: rotate(90deg) scale(1.05);
+}
+
+.close-search:active {
+    transform: rotate(90deg) scale(0.92);
+}
+
+.search-body {
+    overflow-y: auto;
+    padding: 22px;
+    max-height: calc(100vh - 190px);
+}
+
+.search-body::-webkit-scrollbar {
+    width: 5px;
+}
+
+.search-body::-webkit-scrollbar-thumb {
+    background: #d8cec5;
+    border-radius: 20px;
+}
+
+.welcome-section {
+    animation: fadeUp 0.5s ease both;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.welcome-title {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #8d7e70;
+    margin-bottom: 5px;
+}
+
+.welcome-subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.7px;
+    color: #332c27;
+    margin-bottom: 25px;
+}
+
+.discover-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 3px 2px 12px;
+    margin-bottom: 28px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    cursor: grab;
+}
+
+.discover-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.discover-scroll {
+    scrollbar-width: none;
+}
+
+.discover-scroll:active {
+    cursor: grabbing;
+}
+
+.discover-card {
+    flex: 0 0 190px;
+    width: 190px;
+    min-height: 108px;
+    scroll-snap-align: start;
+    border-radius: 18px;
+    padding: 16px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    background: #eee7df;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.35s ease;
+}
+
+.discover-card:hover {
+    transform: translateY(-5px) scale(1.015);
+    box-shadow: 0 15px 30px rgba(58, 43, 31, 0.12);
+}
+
+.discover-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.48), rgba(0, 0, 0, 0));
+}
+
+.discover-card:nth-child(1) {
+    background: url("https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700") center/cover;
+}
+
+.discover-card:nth-child(2) {
+    background: url("https://images.unsplash.com/photo-1600166898405-da9535204843?w=700") center/cover;
+}
+
+.discover-card:nth-child(3) {
+    background: url("https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=700") center/cover;
+}
+
+.discover-card:nth-child(4) {
+    background: url("https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700") center/cover;
+}
+
+.discover-card:nth-child(5) {
+    background: url("https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=700") center/cover;
+}
+
+.discover-card:nth-child(6) {
+    background: url("https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=700") center/cover;
+}
+
+.discover-card:nth-child(7) {
+    background: url("https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=700") center/cover;
+}
+
+.discover-card:nth-child(8) {
+    background: url("https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=700") center/cover;
+}
+
+.discover-name {
+    position: relative;
+    z-index: 2;
+    color: white;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.discover-small {
+    position: relative;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+.section-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 13px;
+}
+
+.section-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: #9a8e83;
+    font-weight: 700;
+}
+
+.section-hint {
+    font-size: 10px;
+    color: #b0a59c;
+}
+
+.tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+}
+
+.tag {
+    border: 1px solid #e4dbd2;
+    background: #fff;
+    padding: 10px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+    color: #5f544a;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.tag:hover {
+    background: #302a25;
+    color: white;
+    border-color: #302a25;
+    transform: translateY(-2px);
+}
+
+.results-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: #978a7f;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.result-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px;
+    border-radius: 18px;
+    cursor: pointer;
+    opacity: 0;
+    animation: resultIn 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+@keyframes resultIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.result-item:hover {
+    background: #f3eee8;
+    transform: translateX(4px);
+}
+
+.result-image {
+    width: 72px;
+    height: 72px;
+    object-fit: cover;
+    border-radius: 16px;
+    flex-shrink: 0;
+    background: #eee7df;
+    box-shadow: 0 5px 15px rgba(50, 38, 28, 0.08);
+}
+
+.result-info {
+    min-width: 0;
+    flex: 1;
+}
+
+.result-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #322c27;
+    margin-bottom: 5px;
+}
+
+.result-name strong {
+    color: #805b3e;
+}
+
+.result-category {
+    font-size: 11px;
+    color: #a0958b;
+    margin-bottom: 7px;
+}
+
+.result-bottom {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.result-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #745237;
+}
+
+.match-badge {
+    font-size: 9px;
+    padding: 3px 7px;
+    border-radius: 20px;
+    background: #eee5dc;
+    color: #806c5b;
+}
+
+.result-arrow {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: #eee8e1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #796b5f;
+    transition: 0.25s ease;
+}
+
+.result-item:hover .result-arrow {
+    background: #302a25;
+    color: white;
+    transform: translateX(2px);
+}
+
+.empty {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.empty-circle {
+    width: 64px;
+    height: 64px;
+    margin: auto auto 17px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(145deg, #f2ece5, #e8dfd6);
+    color: #8c7c6d;
+}
+
+.empty-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 7px;
+}
+
+.empty-text {
+    font-size: 12px;
+    color: #a19890;
+}
+
+@media(max-width:650px) {
+    .search-window {
+        width: calc(100% - 12px);
+        margin: 7px auto 0;
+        max-height: calc(100vh - 14px);
+        border-radius: 25px;
+    }
+    .search-header {
+        padding: 62px 13px 13px;
+    }
+    .search-input-container {
+        height: 62px;
+        padding-right: 15px;
+    }
+    .search-input {
+        font-size: 16px;
+    }
+    .close-search {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 16px;
+        right: 16px;
+    }
+    .search-body {
+        padding: 17px;
+        max-height: calc(100vh - 115px);
+    }
+    .welcome-subtitle {
+        font-size: 21px;
+    }
+    .discover-scroll {
+        gap: 9px;
+        padding-bottom: 10px;
+        margin-left: -2px;
+        margin-right: -2px;
+    }
+    .discover-scroll .discover-card {
+        flex: 0 0 155px;
+        width: 155px;
+        min-height: 95px;
+        padding: 12px;
+    }
+    .discover-name {
+        font-size: 11px;
+    }
+    .discover-small {
+        display: none;
+    }
+    .result-image {
+        width: 62px;
+        height: 62px;
+    }
+}
+
+@media(max-width:390px) {
+    .discover-scroll .discover-card {
+        flex: 0 0 145px;
+        width: 145px;
+    }
+}
+
+/* =====================================================
+   CART STYLES
+===================================================== */
+.cart-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(25, 20, 16, .28);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    opacity: 0;
+    visibility: hidden;
+    transition: .4s ease;
+    z-index: 9998;
+}
+
+.cart-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.cart-drawer {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: min(470px, calc(100vw - 24px));
+    background: rgba(255, 253, 250, .97);
+    border: 1px solid rgba(69, 52, 32, .09);
+    border-radius: 26px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(calc(100% + 30px));
+    transition: transform .55s cubic-bezier(.22, 1, .36, 1), box-shadow .4s ease;
+    box-shadow: 0 25px 80px rgba(43, 31, 20, .18);
+    font-family: "DM Sans", sans-serif;
+    color: #2f2923;
+}
+
+.cart-drawer.active {
+    transform: translateX(0);
+}
+
+.cart-header {
+    padding: 25px 25px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(69, 52, 32, .08);
+    flex-shrink: 0;
+}
+
+.cart-title-area {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.cart-title {
+    font-family: "Playfair Display", serif;
+    font-size: 28px;
+    line-height: 1;
+    color: #2e251e;
+    letter-spacing: -.5px;
+}
+
+.cart-subtitle {
+    font-size: 12px;
+    color: #9b9187;
+}
+
+.close-cart {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(69, 52, 32, .09);
+    background: #faf8f5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s ease;
+    flex-shrink: 0;
+}
+
+.close-cart:hover {
+    background: #453420;
+}
+
+.close-cart svg {
+    width: 18px;
+    height: 18px;
+    stroke: #453420;
+    transition: .3s ease;
+}
+
+.close-cart:hover svg {
+    stroke: #fff;
+    transform: rotate(90deg);
+}
+
+.shipping-box {
+    margin: 18px 22px 5px;
+    padding: 15px 16px;
+    border-radius: 16px;
+    background: #f5f1eb;
+    flex-shrink: 0;
+}
+
+.shipping-text {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    font-size: 11px;
+    color: #665b51;
+    margin-bottom: 10px;
+}
+
+.shipping-text strong {
+    color: #453420;
+}
+
+.shipping-progress {
+    width: 100%;
+    height: 5px;
+    background: #e3ddd4;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.shipping-progress span {
+    display: block;
+    height: 100%;
+    width: 72%;
+    border-radius: 20px;
+    background: #453420;
+    transition: .5s ease;
+}
+
+.cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 15px 22px;
+}
+
+.cart-items::-webkit-scrollbar {
+    width: 4px;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+    background: #d5cec5;
+    border-radius: 10px;
+}
+
+.cart-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 78px 1fr auto;
+    gap: 14px;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(69, 52, 32, .07);
+    animation: itemIn .5s cubic-bezier(.22, 1, .36, 1);
+}
+
+@keyframes itemIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-image {
+    width: 78px;
+    height: 92px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f2eee8;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s ease;
+}
+
+.cart-item:hover .product-image img {
+    transform: scale(1.05);
+}
+
+.product-info {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.product-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3b3027;
+    margin-bottom: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-meta {
+    font-size: 11px;
+    color: #9b9187;
+    margin-bottom: 12px;
+}
+
+.product-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.quantity {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    border: 1px solid rgba(69, 52, 32, .11);
+    background: #fff;
+    border-radius: 9px;
+    overflow: hidden;
+}
+
+.qty-btn {
+    width: 29px;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    color: #453420;
+    font-size: 15px;
+    transition: .2s ease;
+}
+
+.qty-btn:hover {
+    background: #f3eee8;
+}
+
+.qty-number {
+    min-width: 26px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.product-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #453420;
+}
+
+.remove-item {
+    align-self: flex-start;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.remove-item svg {
+    width: 16px;
+    height: 16px;
+    stroke: #aaa198;
+    transition: .25s ease;
+}
+
+.remove-item:hover svg {
+    stroke: #453420;
+    transform: scale(1.1);
+}
+
+.empty-cart {
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+}
+
+.empty-cart.active {
+    display: flex;
+}
+
+.empty-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: #f3eee8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.empty-icon svg {
+    width: 29px;
+    height: 29px;
+    stroke: #453420;
+}
+
+.empty-cart h3 {
+    font-family: "Playfair Display", serif;
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: #2e251e;
+}
+
+.empty-cart p {
+    font-size: 12px;
+    color: #9b9187;
+    line-height: 1.6;
+}
+
+.cart-footer {
+    padding: 20px 22px 22px;
+    border-top: 1px solid rgba(69, 52, 32, .08);
+    background: rgba(255, 253, 250, .98);
+    border-radius: 0 0 26px 26px;
+    flex-shrink: 0;
+}
+
+.summary-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 9px;
+    font-size: 12px;
+    color: #81776d;
+}
+
+.summary-row.total {
+    margin-top: 13px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(69, 52, 32, .08);
+    font-size: 15px;
+    font-weight: 700;
+    color: #352a22;
+}
+
+.summary-row.total strong {
+    font-size: 20px;
+    letter-spacing: -.5px;
+}
+
+.checkout-btn {
+    position: relative;
+    width: 100%;
+    height: 56px;
+    margin-top: 18px;
+    border: 0;
+    border-radius: 15px;
+    background: #453420;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .2px;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.checkout-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -120%;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .18), transparent);
+    transform: skewX(-20deg);
+    transition: .7s ease;
+}
+
+.checkout-btn:hover::before {
+    left: 140%;
+}
+
+.checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(69, 52, 32, .22);
+}
+
+.checkout-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.checkout-content svg {
+    width: 17px;
+    height: 17px;
+}
+
+.secure-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 10px;
+    color: #a29a92;
+}
+
+.secure-payment svg {
+    width: 12px;
+    height: 12px;
+}
+
+@media (max-width:600px) {
+    .cart-drawer {
+        top: 7px;
+        right: 7px;
+        bottom: 7px;
+        width: calc(100vw - 14px);
+        border-radius: 22px;
+    }
+    .cart-header {
+        padding: 22px 20px 18px;
+    }
+    .cart-title {
+        font-size: 26px;
+    }
+    .shipping-box {
+        margin: 15px 18px 2px;
+    }
+    .cart-items {
+        padding: 12px 18px;
+    }
+    .cart-footer {
+        padding: 18px 18px 20px;
+    }
+    .product-image {
+        width: 70px;
+        height: 84px;
+    }
+    .cart-item {
+        grid-template-columns: 70px 1fr auto;
+        gap: 12px;
+    }
+}
+
+/* =====================================================
+   SIDE MENU STYLES
+===================================================== */
+.side-navigation * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.side-navigation {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: #f7f3ee;
+    color: #4A3728;
+}
+
+.menu-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 20, 14, .48);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .65s ease, visibility .65s ease;
+    z-index: 9997;
+}
+
+.menu-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.side-navigation {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: min(510px, 93vw);
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+    background: radial-gradient(circle at 10% 8%, rgba(255, 255, 255, .95), transparent 30%),
+        radial-gradient(circle at 90% 90%, rgba(165, 151, 130, .14), transparent 32%),
+        linear-gradient(145deg, #fffdfa 0%, #faf6f1 48%, #f0e7de 100%);
+    transform: translate3d(-110%, 0, 0);
+    transition: transform .9s cubic-bezier(.16, 1, .3, 1);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 30px 0 100px rgba(38, 25, 16, .22);
+}
+
+.side-navigation.active {
+    transform: translate3d(0, 0, 0);
+}
+
+.menu-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(2px);
+    opacity: .45;
+}
+
+.orb-one {
+    width: 300px;
+    height: 300px;
+    top: -190px;
+    left: -130px;
+    background: radial-gradient(circle, rgba(255, 255, 255, .95), transparent 70%);
+    animation: floatingOrb 8s ease-in-out infinite;
+}
+
+.orb-two {
+    width: 230px;
+    height: 230px;
+    right: -120px;
+    top: 30%;
+    background: radial-gradient(circle, rgba(165, 151, 130, .13), transparent 70%);
+    animation: floatingOrbTwo 10s ease-in-out infinite;
+}
+
+.orb-three {
+    width: 260px;
+    height: 260px;
+    left: -150px;
+    bottom: -140px;
+    background: radial-gradient(circle, rgba(74, 55, 40, .05), transparent 70%);
+    animation: floatingOrb 11s ease-in-out infinite reverse;
+}
+
+@keyframes floatingOrb {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(25px, 20px, 0) scale(1.08);
+    }
+}
+
+@keyframes floatingOrbTwo {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0);
+    }
+    50% {
+        transform: translate3d(-25px, 30px, 0) scale(1.12);
+    }
+}
+
+.menu-header {
+    position: relative;
+    padding: 34px 32px 26px;
+    z-index: 5;
+    border-bottom: 1px solid rgba(74, 55, 40, .09);
+    overflow: hidden;
+}
+
+.header-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #A59782, transparent);
+    transition: width 1.3s cubic-bezier(.16, 1, .3, 1);
+    transition-delay: .35s;
+}
+
+.side-navigation.active .header-line {
+    width: 100%;
+}
+
+.header-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.menu-eyebrow {
+    font-size: 9px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #A59782;
+    margin-bottom: 12px;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity .7s ease, transform .8s cubic-bezier(.16, 1, .3, 1);
+    transition-delay: .25s;
+}
+
+.side-navigation.active .menu-eyebrow {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-heading {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: .95;
+    letter-spacing: -1.8px;
+    color: #4A3728;
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity .8s ease, transform .9s cubic-bezier(.16, 1, .3, 1);
+    transition-delay: .32s;
+}
+
+.side-navigation.active .menu-heading {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-intro {
+    margin-top: 14px;
+    max-width: 310px;
+    font-size: 11px;
+    line-height: 1.7;
+    color: #918271;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity .8s ease, transform .8s cubic-bezier(.16, 1, .3, 1);
+    transition-delay: .42s;
+}
+
+.side-navigation.active .menu-intro {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.menu-close {
+    width: 47px;
+    height: 47px;
+    border-radius: 50%;
+    border: 1px solid rgba(74, 55, 40, .12);
+    background: rgba(255, 255, 255, .60);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(.7) rotate(-40deg);
+    transition: opacity .6s ease, transform .7s cubic-bezier(.16, 1, .3, 1), background .35s ease;
+    transition-delay: .45s;
+}
+
+.side-navigation.active .menu-close {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.menu-close:hover {
+    background: #fff;
+    transform: scale(1.08) rotate(90deg) !important;
+}
+
+.close-lines {
+    position: relative;
+    width: 19px;
+    height: 19px;
+}
+
+.close-lines::before,
+.close-lines::after {
+    content: "";
+    position: absolute;
+    top: 9px;
+    left: 0;
+    width: 20px;
+    height: 1.5px;
+    background: #4A3728;
+    border-radius: 10px;
+}
+
+.close-lines::before {
+    transform: rotate(45deg);
+}
+
+.close-lines::after {
+    transform: rotate(-45deg);
+}
+
+.category-scroll {
+    position: relative;
+    z-index: 4;
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 20px 18px;
+    scrollbar-width: none;
+}
+
+.category-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.category-item {
+    position: relative;
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    padding: 10px 11px;
+    margin: 1px 0;
+    border-radius: 17px;
+    text-decoration: none;
+    overflow: hidden;
+    opacity: 0;
+    transform: translate3d(-45px, 0, 0) scale(.97);
+    transition: opacity .7s ease, transform .8s cubic-bezier(.16, 1, .3, 1), background .45s ease;
+}
+
+.side-navigation.active .category-item:nth-child(1) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition-delay: .45s;
+}
+
+.side-navigation.active .category-item:nth-child(2) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition-delay: .51s;
+}
+
+.side-navigation.active .category-item:nth-child(3) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition-delay: .57s;
+}
+
+.side-navigation.active .category-item:nth-child(4) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition-delay: .63s;
+}
+
+.side-navigation.active .category-item:nth-child(5) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition-delay: .69s;
+}
+
+.side-navigation.active .category-item:nth-child(6) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition-delay: .75s;
+}
+
+.side-navigation.active .category-item:nth-child(7) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition-delay: .81s;
+}
+
+.side-navigation.active .category-item:nth-child(8) {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    transition-delay: .87s;
+}
+
+.category-item::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 17px;
+    background: linear-gradient(105deg, rgba(255, 255, 255, .92), rgba(255, 255, 255, .35));
+    opacity: 0;
+    transform: translateX(-35px);
+    transition: opacity .5s ease, transform .65s cubic-bezier(.16, 1, .3, 1);
+}
+
+.category-item:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.category-item::after {
+    content: "";
+    position: absolute;
+    top: -80%;
+    left: -80%;
+    width: 45%;
+    height: 260%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .65), transparent);
+    transform: rotate(18deg);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.category-item:hover::after {
+    opacity: 1;
+    animation: lightSweep .9s ease forwards;
+}
+
+@keyframes lightSweep {
+    from {
+        left: -80%;
+    }
+    to {
+        left: 145%;
+    }
+}
+
+.item-number {
+    width: 40px;
+    flex-shrink: 0;
+    position: relative;
+    z-index: 2;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #B4A797;
+    transition: color .4s ease, transform .5s cubic-bezier(.16, 1, .3, 1);
+}
+
+.category-item:hover .item-number {
+    color: #4A3728;
+    transform: translateX(4px);
+}
+
+.item-icon {
+    position: relative;
+    z-index: 2;
+    width: 49px;
+    height: 49px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    font-size: 0;
+    transition: transform .6s cubic-bezier(.16, 1, .3, 1), filter .5s ease;
+    overflow: visible;
+    border-radius: 0;
+}
+
+.item-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 0;
+}
+
+.category-item:hover .item-icon {
+    transform: translateY(-3px) rotate(-8deg) scale(1.13);
+    filter: drop-shadow(0 8px 8px rgba(74, 55, 40, .12));
+}
+
+.item-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    min-width: 0;
+}
+
+.item-name {
+    display: block;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #4A3728;
+    letter-spacing: -.2px;
+    transition: transform .45s cubic-bezier(.16, 1, .3, 1);
+}
+
+.category-item:hover .item-name {
+    transform: translateX(3px);
+}
+
+.item-subtitle {
+    display: block;
+    margin-top: 5px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #A59782;
+}
+
+.item-arrow {
+    position: relative;
+    z-index: 2;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    color: #A59782;
+    transition: transform .6s cubic-bezier(.16, 1, .3, 1), background .35s ease, color .35s ease;
+}
+
+.category-item:hover .item-arrow {
+    transform: translateX(7px);
+    color: #4A3728;
+    background: rgba(74, 55, 40, .07);
+}
+
+.category-item:not(:last-child) .item-divider {
+    position: absolute;
+    left: 56px;
+    right: 12px;
+    bottom: 0;
+    height: 1px;
+    background: rgba(74, 55, 40, .055);
+    transition: opacity .3s ease;
+}
+
+.category-item:hover .item-divider {
+    opacity: 0;
+}
+
+.menu-footer {
+    position: relative;
+    z-index: 5;
+    min-height: 65px;
+    padding: 15px 31px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid rgba(74, 55, 40, .09);
+    background: rgba(255, 255, 255, .27);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity .7s ease, transform .8s cubic-bezier(.16, 1, .3, 1);
+    transition-delay: 1s;
+}
+
+.side-navigation.active .menu-footer {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.footer-brand {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    color: #4A3728;
+}
+
+.footer-count {
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #A59782;
+}
+
+@media(max-width:600px) {
+    .menu-header {
+        padding: 28px 24px 23px;
+    }
+    .menu-heading {
+        font-size: 34px;
+    }
+    .menu-intro {
+        font-size: 10px;
+        max-width: 260px;
+    }
+    .menu-close {
+        width: 44px;
+        height: 44px;
+    }
+    .category-scroll {
+        padding: 10px 11px 15px;
+    }
+    .category-item {
+        min-height: 72px;
+        padding: 8px 8px;
+    }
+    .item-number {
+        width: 31px;
+        font-size: 9px;
+    }
+    .item-icon {
+        width: 44px;
+        height: 44px;
+        margin-right: 12px;
+        border-radius: 0;
+    }
+    .item-name {
+        font-size: 14px;
+    }
+    .item-subtitle {
+        font-size: 7px;
+        letter-spacing: 1.2px;
+    }
+    .item-arrow {
+        width: 31px;
+        height: 31px;
+    }
+    .category-item:not(:last-child) .item-divider {
+        left: 51px;
+    }
+    .menu-footer {
+        padding: 14px 24px;
+    }
+}
+
+body.menu-is-open {
+    overflow: hidden;
+}
+
+@media(prefers-reduced-motion:reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar">
+  <!-- Menu Button -->
+  <button class="menu-button" id="menuOpenButton" aria-label="Open menu">
+    <span class="menu-line"></span>
+    <span class="menu-line-center"></span>
+    <span class="menu-line"></span>
+  </button>
+
+  <!-- Logo -->
+  <a href="#" class="logo-link">
+    <img class="logo-image" src="https://res.cloudinary.com/du2naqx3i/image/upload/v1786119016/Logo_hand_ben_moroccan_product_traditional_qat4qu.png" alt="Logo" />
+  </a>
+
+  <!-- Search Button -->
+  <div class="search" id="searchTrigger">
+    <span class="search-circle"></span>
+    <span class="search-handle"></span>
+  </div>
+
+  <!-- Cart -->
+  <button class="cart" onclick="openCart()" aria-label="Open cart">
+    <svg class="bag-icon" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17 17 V13 C17 8.8 19.8 6 24 6 C28.2 6 31 8.8 31 13 V17" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      <path d="M11 16.5 H37 L35.5 38.5 C35.4 39.8 34.6 40.5 33.4 40.5 H14.6 C13.4 40.5 12.6 39.8 12.5 38.5 Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+      <path d="M11.5 16.5 H36.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+    </svg>
+    <span class="cart-badge" id="cartCount">2</span>
+  </button>
+</nav>
+
+<!-- ===== SEARCH OVERLAY ===== -->
+<div class="search-overlay" id="searchOverlay">
+  <div class="search-window">
+    <button class="close-search" id="closeSearch" aria-label="Close search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M6 6L18 18"></path>
+        <path d="M18 6L6 18"></path>
+      </svg>
+    </button>
+    <div class="search-header">
+      <div class="search-input-container">
+        <svg class="main-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M16.5 16.5L21 21"></path>
+        </svg>
+        <input id="searchInput" class="search-input" type="text" placeholder="Search for something beautiful..." autocomplete="off">
+        <button class="clear-search" id="clearSearch" aria-label="Clear search">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 6L18 18"></path>
+            <path d="M18 6L6 18"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="search-body" id="searchBody">
+      <div id="defaultContent">
+        <div class="welcome-section">
+          <div class="welcome-title">Discover</div>
+          <div class="welcome-subtitle">Find something special.</div>
+          <div class="section-row">
+            <div class="section-title">Explore</div>
+          </div>
+          <div class="discover-scroll">
+            <div class="discover-card" data-search="Moroccan Leather">
+              <div class="discover-name">Moroccan Leather</div>
+              <div class="discover-small">Crafted by hand</div>
+            </div>
+            <div class="discover-card" data-search="Moroccan Carpets">
+              <div class="discover-name">Moroccan Carpets</div>
+              <div class="discover-small">Handwoven pieces</div>
+            </div>
+            <div class="discover-card" data-search="Moroccan Pottery">
+              <div class="discover-name">Moroccan Pottery</div>
+              <div class="discover-small">Handmade ceramics</div>
+            </div>
+            <div class="discover-card" data-search="Copper Furniture">
+              <div class="discover-name">Copper Furniture</div>
+              <div class="discover-small">Moroccan craftsmanship</div>
+            </div>
+            <div class="discover-card" data-search="Straw Home Decor">
+              <div class="discover-name">Straw Decor</div>
+              <div class="discover-small">Natural handmade pieces</div>
+            </div>
+            <div class="discover-card" data-search="Pillow Cases">
+              <div class="discover-name">Pillow Cases</div>
+              <div class="discover-small">Elegant Moroccan style</div>
+            </div>
+            <div class="discover-card" data-search="Moroccan Pastries">
+              <div class="discover-name">Moroccan Pastries</div>
+              <div class="discover-small">Traditional sweets</div>
+            </div>
+            <div class="discover-card" data-search="Argan Oil">
+              <div class="discover-name">Argan Oil</div>
+              <div class="discover-small">Pure Moroccan beauty</div>
+            </div>
+          </div>
+          <div class="section-row">
+            <div class="section-title">Popular Searches</div>
+            <div class="section-hint">Trending now</div>
+          </div>
+          <div class="tags">
+            <div class="tag">Moroccan Carpets</div>
+            <div class="tag">Leather Pouf</div>
+            <div class="tag">Pottery</div>
+            <div class="tag">Home Decor</div>
+            <div class="tag">Argan Oil</div>
+            <div class="tag">Moroccan Blankets</div>
+            <div class="tag">Pastries</div>
+            <div class="tag">Copper Furniture</div>
+          </div>
+        </div>
+      </div>
+      <div id="resultsContainer"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CART DRAWER ===== -->
+<div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <div class="cart-title-area">
+      <div class="cart-title">Your Cart</div>
+      <div class="cart-subtitle">2 beautiful pieces selected</div>
+    </div>
+    <button class="close-cart" onclick="closeCart()" aria-label="Close">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
+        <path d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    </button>
+  </div>
+  <div class="shipping-box">
+    <div class="shipping-text" id="shippingText">
+      <span id="shippingMessage">You're only <strong>$35</strong> away from FREE delivery! 🎁</span>
+      <span id="shippingPercent">72%</span>
+    </div>
+    <div class="shipping-progress">
+      <span id="shippingProgressBar"></span>
+    </div>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-item" data-price="45">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1603199506016-b9a594b593c0?auto=format&fit=crop&w=400&q=85" alt="Handmade product">
+      </div>
+      <div class="product-info">
+        <div class="product-name">Handmade Ceramic Vase</div>
+        <div class="product-meta">Natural · Handmade</div>
+        <div class="product-bottom">
+          <div class="quantity">
+            <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+            <span class="qty-number">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <div class="product-price">$45</div>
+        </div>
+      </div>
+      <button class="remove-item" onclick="removeItem(this)" aria-label="Remove product">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+          <path d="M4 7h16" />
+          <path d="M10 11v6M14 11v6" />
+          <path d="M6 7l1 13h10l1-13" />
+          <path d="M9 7V4h6v3" />
+        </svg>
+      </button>
+    </div>
+    <div class="cart-item" data-price="50">
+      <div class="product-image">
+        <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=400&q=85" alt="Home decor">
+      </div>
+      <div class="product-info">
+        <div class="product-name">Moroccan Woven Basket</div>
+        <div class="product-meta">Beige · Handmade</div>
+        <div class="product-bottom">
+          <div class="quantity">
+            <button class="qty-btn" onclick="changeQty(this,-1)">−</button>
+            <span class="qty-number">1</span>
+            <button class="qty-btn" onclick="changeQty(this,1)">+</button>
+          </div>
+          <div class="product-price">$50</div>
+        </div>
+      </div>
+      <button class="remove-item" onclick="removeItem(this)" aria-label="Remove product">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6">
+          <path d="M4 7h16" />
+          <path d="M10 11v6M14 11v6" />
+          <path d="M6 7l1 13h10l1-13" />
+          <path d="M9 7V4h6v3" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="empty-cart" id="emptyCart">
+    <div class="empty-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+        <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L21 8H6" />
+        <circle cx="10" cy="20" r="1" />
+        <circle cx="18" cy="20" r="1" />
+      </svg>
+    </div>
+    <h3>Your cart is empty</h3>
+    <p>Discover something beautiful<br>and add it to your collection.</p>
+  </div>
+  <div class="cart-footer" id="cartFooter">
+    <div class="summary-row"><span>Subtotal</span><span id="subtotal">$95</span></div>
+    <div class="summary-row"><span>Shipping</span><span id="shippingCost">$20</span></div>
+    <div class="summary-row total"><span>Total</span><strong id="total">$115</strong></div>
+    <button class="checkout-btn">
+      <span class="checkout-content">
+        Proceed to Checkout
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8">
+          <path d="M5 12h14" />
+          <path d="m13 6 6 6-6 6" />
+        </svg>
+      </span>
+    </button>
+    <div class="secure-payment">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.7">
+        <rect x="5" y="10" width="14" height="10" rx="2" />
+        <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+      </svg>
+      Secure & encrypted checkout
+    </div>
+  </div>
+</aside>
+
+<!-- ===== SIDE MENU ===== -->
+<div class="menu-backdrop" id="menuBackdrop"></div>
+<aside class="side-navigation" id="sideNavigation">
+  <div class="menu-orb orb-one"></div>
+  <div class="menu-orb orb-two"></div>
+  <div class="menu-orb orb-three"></div>
+  <header class="menu-header">
+    <div class="header-row">
+      <div>
+        <div class="menu-eyebrow">Discover Morocco</div>
+        <h1 class="menu-heading">Collections</h1>
+        <p class="menu-intro">Explore authentic Moroccan craftsmanship, traditional treasures and timeless pieces made to bring character into your world.</p>
+      </div>
+      <button class="menu-close" id="menuCloseButton" aria-label="Close menu">
+        <div class="close-lines"></div>
+      </button>
+    </div>
+    <div class="header-line"></div>
+  </header>
+  <nav class="category-scroll" aria-label="Product categories">
+    <a href="#" class="category-item">
+      <span class="item-number">01</span>
+      <span class="item-icon">
+        <img src="https://res.cloudinary.com/du2naqx3i/image/upload/v1787672827/Moroccan_Leather_Goods_image_category_lbiwf7.png" alt="Moroccan Leather Goods">
+      </span>
+      <span class="item-content">
+        <span class="item-name">Moroccan Leather Goods</span>
+        <span class="item-subtitle">Handcrafted Leather</span>
+      </span>
+      <span class="item-arrow">→</span>
+      <span class="item-divider"></span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="item-number">02</span>
+      <span class="item-icon">
+        <img src="https://res.cloudinary.com/du2naqx3i/image/upload/v1787672826/Moroccan_Pottery_Decor_image_category_zrgd77.png" alt="Moroccan Pottery">
+      </span>
+      <span class="item-content">
+        <span class="item-name">Moroccan Pottery & Decor</span>
+        <span class="item-subtitle">Artisanal Ceramics</span>
+      </span>
+      <span class="item-arrow">→</span>
+      <span class="item-divider"></span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="item-number">03</span>
+      <span class="item-icon">
+        <img src="https://res.cloudinary.com/du2naqx3i/image/upload/v1787672827/Moroccan_Copper_Furniture_Image_of_category_hp5dbm.png" alt="Moroccan Copper Furniture">
+      </span>
+      <span class="item-content">
+        <span class="item-name">Moroccan Copper Furniture</span>
+        <span class="item-subtitle">Timeless Metalwork</span>
+      </span>
+      <span class="item-arrow">→</span>
+      <span class="item-divider"></span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="item-number">04</span>
+      <span class="item-icon">
+        <img src="https://res.cloudinary.com/du2naqx3i/image/upload/v1787672826/Moroccan_Carpets_Blankets_image_of_category_tzmlip.png" alt="Moroccan Carpets">
+      </span>
+      <span class="item-content">
+        <span class="item-name">Moroccan Carpets & Blankets</span>
+        <span class="item-subtitle">Traditional Weaving</span>
+      </span>
+      <span class="item-arrow">→</span>
+      <span class="item-divider"></span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="item-number">05</span>
+      <span class="item-icon">
+        <img src="https://res.cloudinary.com/du2naqx3i/image/upload/v1787672827/Straw_Home_Decor_image_category_lgbj5j.png" alt="Straw Home Decor">
+      </span>
+      <span class="item-content">
+        <span class="item-name">Straw Home Decor</span>
+        <span class="item-subtitle">Natural Craftsmanship</span>
+      </span>
+      <span class="item-arrow">→</span>
+      <span class="item-divider"></span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="item-number">06</span>
+      <span class="item-icon">
+        <img src="https://res.cloudinary.com/du2naqx3i/image/upload/v1787672826/Pillow_Cases_image_category_bqgspd.png" alt="Pillow Cases">
+      </span>
+      <span class="item-content">
+        <span class="item-name">Pillow Cases</span>
+        <span class="item-subtitle">Elegant Textiles</span>
+      </span>
+      <span class="item-arrow">→</span>
+      <span class="item-divider"></span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="item-number">07</span>
+      <span class="item-icon">
+        <img src="https://res.cloudinary.com/du2naqx3i/image/upload/v1787672825/Argan_Oil_for_eat_and_for_cosmetic_Amlou_image_category_muqdyo.png" alt="Moroccan Pastries">
+      </span>
+      <span class="item-content">
+        <span class="item-name">Moroccan Pastries</span>
+        <span class="item-subtitle">Traditional Flavours</span>
+      </span>
+      <span class="item-arrow">→</span>
+      <span class="item-divider"></span>
+    </a>
+    <a href="#" class="category-item">
+      <span class="item-number">08</span>
+      <span class="item-icon">
+        <img src="https://res.cloudinary.com/du2naqx3i/image/upload/v1787672825/Argan_Oil_for_eat_and_for_cosmetic_Amlou_image_category_muqdyo.png" alt="Argan Oil & Amlou">
+      </span>
+      <span class="item-content">
+        <span class="item-name">Argan Oil & Amlou</span>
+        <span class="item-subtitle">Pure Moroccan Goodness</span>
+      </span>
+      <span class="item-arrow">→</span>
+      <span class="item-divider"></span>
+    </a>
+  </nav>
+  <footer class="menu-footer">
+    <span class="footer-brand">Moroccan Soul</span>
+    <span class="footer-count">08 Collections</span>
+  </footer>
+</aside>
+
+<main class="product-page">
+
+<section class="product-layout">
+
+<div class="gallery">
+
+    <div class="main-image">
+
+        <div
+            class="motif motif-left"
+            aria-hidden="true"
+        ></div>
+
+        <div
+            class="motif motif-right"
+            aria-hidden="true"
+        ></div>
+
+        <img
+            id="mainImage"
+            src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1400&q=85"
+            alt="Product"
+        >
+
+        <div class="image-number">
+
+            <span id="currentImage">
+                01
+            </span>
+
+            <span>/</span>
+
+            <span id="totalImages">
+                04
+            </span>
+
+        </div>
+
+    </div>
+
+    <div
+        class="thumbnails"
+        id="thumbnailContainer"
+    >
+
+        <button
+            class="thumbnail active"
+            type="button"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=500&q=80"
+                alt="Product image"
+            >
+
+        </button>
+
+        <button
+            class="thumbnail"
+            type="button"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=500&q=80"
+                alt="Product image"
+            >
+
+        </button>
+
+        <button
+            class="thumbnail"
+            type="button"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=500&q=80"
+                alt="Product image"
+            >
+
+        </button>
+
+        <button
+            class="thumbnail"
+            type="button"
+        >
+
+            <img
+                src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=500&q=80"
+                alt="Product image"
+            >
+
+        </button>
+
+    </div>
+
+</div>
+
+<div class="product-information">
+
+    <div class="category">
+        Handcrafted Collection
+    </div>
+
+    <h1 class="product-title">
+
+        Moroccan<br>
+        Heritage<br>
+        Collection
+
+    </h1>
+
+    <div class="decorative-mark">
+        ✦
+    </div>
+
+    <div class="price-row">
+
+        <span class="price">
+            450
+        </span>
+
+        <span class="currency">
+            MAD
+        </span>
+
+    </div>
+
+    <div class="color-selector">
+
+        <div class="color-label-row">
+
+            <span class="color-label">
+                Select color
+            </span>
+
+            <span
+                class="selected-color"
+                id="selectedColor"
+            >
+                Red
+            </span>
+
+        </div>
+
+        <div class="color-slider-wrapper">
+
+            <div
+                class="color-slider"
+                id="colorSlider"
+            >
+
+                <button
+                    class="color-option active"
+                    type="button"
+                    data-color="Red"
+                    onclick="changeColor('Red',this)"
+                    aria-label="Red"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80"
+                        alt="Red"
+                    >
+
+                </button>
+
+                <button
+                    class="color-option"
+                    type="button"
+                    data-color="Green"
+                    onclick="changeColor('Green',this)"
+                    aria-label="Green"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80&sat=-40"
+                        alt="Green"
+                    >
+
+                </button>
+
+                <button
+                    class="color-option"
+                    type="button"
+                    data-color="Black"
+                    onclick="changeColor('Black',this)"
+                    aria-label="Black"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80&bw=1"
+                        alt="Black"
+                    >
+
+                </button>
+
+                <button
+                    class="color-option"
+                    type="button"
+                    data-color="Beige"
+                    onclick="changeColor('Beige',this)"
+                    aria-label="Beige"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80&sat=-80"
+                        alt="Beige"
+                    >
+
+                </button>
+
+                <button
+                    class="color-option"
+                    type="button"
+                    data-color="Brown"
+                    onclick="changeColor('Brown',this)"
+                    aria-label="Brown"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80&sepia=1"
+                        alt="Brown"
+                    >
+
+                </button>
+
+                <button
+                    class="color-option"
+                    type="button"
+                    data-color="Cream"
+                    onclick="changeColor('Cream',this)"
+                    aria-label="Cream"
+                >
+
+                    <img
+                        src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=200&q=80&sat=-100"
+                        alt="Cream"
+                    >
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <p class="description">
+
+        A refined expression of Moroccan craftsmanship,
+        created with a timeless sense of beauty and detail.
+        Each piece carries the warmth of traditional
+        Moroccan artistry while fitting effortlessly into
+        a modern, elegant lifestyle.
+
+    </p>
+
+    <button
+        class="image-add-to-cart"
+        type="button"
+        onclick="addToCart()"
+        aria-label="Add to cart"
+    >
+
+        <img
+            src="https://i.ibb.co/BKtVJB43/IMG-2723.jpg"
+            alt="Add to cart"
+        >
+
+        <span class="image-cart-overlay">
+
+            <span class="image-cart-title">
+                Add to cart
+            </span>
+
+            <span
+                class="image-cart-line"
+                aria-hidden="true"
+            ></span>
+
+        </span>
+
+    </button>
+
+    <div class="details">
+
+        <div class="detail">
+
+            <span class="detail-label">
+                Craft
+            </span>
+
+            <span class="detail-value">
+                Handmade
+            </span>
+
+        </div>
+
+        <div class="detail">
+
+            <span class="detail-label">
+                Origin
+            </span>
+
+            <span class="detail-value">
+                Morocco
+            </span>
+
+        </div>
+
+        <div class="detail">
+
+            <span class="detail-label">
+                Style
+            </span>
+
+            <span class="detail-value">
+                Traditional · Contemporary
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="heritage">
+
+        <div class="heritage-symbol">
+            ⟡
+        </div>
+
+        <div class="heritage-content">
+
+            <strong>
+                Made with Moroccan soul.
+            </strong>
+
+            <span>
+                Inspired by generations of craftsmanship,
+                presented for the modern home.
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+     SAME PRODUCTS
+===================================================== -->
+
+<section class="same-products">
+
+    <div class="same-products-header">
+
+        <div class="same-products-heading">
+
+            <div class="same-products-kicker">
+                Explore More
+            </div>
+
+            <h2 class="same-products-title">
+                You May Also Like
+            </h2>
+
+            <p class="same-products-subtitle">
+                Discover more pieces from our Moroccan collection.
+            </p>
+
+        </div>
+
+        <div class="same-products-controls">
+
+            <button
+                class="same-product-arrow"
+                type="button"
+                id="sameProductsPrev"
+                aria-label="Previous products"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                >
+                    <path d="M15 18l-6-6 6-6"/>
+                </svg>
+
+            </button>
+
+            <button
+                class="same-product-arrow"
+                type="button"
+                id="sameProductsNext"
+                aria-label="Next products"
+            >
+
+                <svg
+                    viewBox="0 0 24 24"
+                >
+                    <path d="M9 18l6-6-6-6"/>
+                </svg>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div class="same-products-viewport">
+
+        <div
+            class="same-products-track"
+            id="sameProductsTrack"
+        >
+
+            <!-- PRODUCT 01 -->
+
+            <a
+                class="same-product-card"
+                href="product-01.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        01
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=700&q=85"
+                        alt="Moroccan Heritage Product"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Handcrafted
+                </div>
+
+                <h3 class="same-product-name">
+                    Heritage Piece
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        450 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 02 -->
+
+            <a
+                class="same-product-card"
+                href="product-02.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        02
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=85"
+                        alt="Moroccan Home Decor"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Home Decor
+                </div>
+
+                <h3 class="same-product-name">
+                    Moroccan Decor
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        520 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 03 -->
+
+            <a
+                class="same-product-card"
+                href="product-03.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        03
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=700&q=85"
+                        alt="Moroccan Craft"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Handmade
+                </div>
+
+                <h3 class="same-product-name">
+                    Artisan Craft
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        390 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 04 -->
+
+            <a
+                class="same-product-card"
+                href="product-04.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        04
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=700&q=85"
+                        alt="Moroccan Leather"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Leather
+                </div>
+
+                <h3 class="same-product-name">
+                    Classic Leather
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        680 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 05 -->
+
+            <a
+                class="same-product-card"
+                href="product-05.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        05
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=700&q=75"
+                        alt="Moroccan Traditional Product"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Traditional
+                </div>
+
+                <h3 class="same-product-name">
+                    Atlas Collection
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        590 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 06 -->
+
+            <a
+                class="same-product-card"
+                href="product-06.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        06
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=700&q=85"
+                        alt="Moroccan Green Collection"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Collection
+                </div>
+
+                <h3 class="same-product-name">
+                    Green Heritage
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        470 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 07 -->
+
+            <a
+                class="same-product-card"
+                href="product-07.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        07
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=85"
+                        alt="Moroccan Black Collection"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Modern
+                </div>
+
+                <h3 class="same-product-name">
+                    Black Edition
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        620 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 08 -->
+
+            <a
+                class="same-product-card"
+                href="product-08.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        08
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=700&q=85"
+                        alt="Moroccan Beige Product"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Essential
+                </div>
+
+                <h3 class="same-product-name">
+                    Desert Beige
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        430 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 09 -->
+
+            <a
+                class="same-product-card"
+                href="product-09.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        09
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=700&q=85"
+                        alt="Moroccan Brown Product"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Artisan
+                </div>
+
+                <h3 class="same-product-name">
+                    Brown Artisan
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        550 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+
+            <!-- PRODUCT 10 -->
+
+            <a
+                class="same-product-card"
+                href="product-10.html"
+            >
+
+                <div class="same-product-image">
+
+                    <span class="same-product-number">
+                        10
+                    </span>
+
+                    <img
+                        src="https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=700&q=65"
+                        alt="Moroccan Cream Product"
+                        loading="lazy"
+                    >
+
+                    <span class="same-product-view">
+
+                        <!-- EYE ICON -->
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                            <circle
+                                cx="12"
+                                cy="12"
+                                r="2.8"
+                            />
+                        </svg>
+
+                    </span>
+
+                </div>
+
+                <div class="same-product-category">
+                    Heritage
+                </div>
+
+                <h3 class="same-product-name">
+                    Cream Heritage
+                </h3>
+
+                <div class="same-product-bottom">
+
+                    <span class="same-product-price">
+                        490 MAD
+                    </span>
+
+                </div>
+
+                <div class="same-product-line"></div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<script>
+
+const productColors = {
+
+    Red:{
+        images:[
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1400&q=85",
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1400&q=80",
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=80"
+        ]
+    },
+
+    Green:{
+        images:[
+            "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=1400&q=85",
+            "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=1400&q=80",
+            "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1495555961986-6d4c1ecb7be3?auto=format&fit=crop&w=1000&q=80"
+        ]
+    },
+
+    Black:{
+        images:[
+            "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1400&q=85",
+            "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1400&q=80",
+            "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1000&q=80"
+        ]
+    },
+
+    Beige:{
+        images:[
+            "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1400&q=85",
+            "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1400&q=80",
+            "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?auto=format&fit=crop&w=1000&q=80"
+        ]
+    },
+
+    Brown:{
+        images:[
+            "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1400&q=85",
+            "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1400&q=80",
+            "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=1000&q=80"
+        ]
+    },
+
+    Cream:{
+        images:[
+            "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1400&q=85",
+            "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1400&q=80",
+            "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1200&q=80",
+            "https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?auto=format&fit=crop&w=1000&q=80"
+        ]
+    }
+
+};
+
+let currentColor = "Red";
+
+let currentImageIndex = 0;
+
+function changeColor(
+    colorName,
+    button
+){
+
+    currentColor =
+        colorName;
+
+    currentImageIndex =
+        0;
+
+    const colorData =
+        productColors[colorName];
+
+    if(!colorData){
+        return;
+    }
+
+    document
+        .getElementById("selectedColor")
+        .textContent =
+            colorName;
+
+    document
+        .querySelectorAll(".color-option")
+        .forEach(function(item){
+
+            item.classList.remove(
+                "active"
+            );
+
+        });
+
+    button.classList.add(
+        "active"
+    );
+
+    button.scrollIntoView({
+        behavior:"smooth",
+        block:"nearest",
+        inline:"center"
+    });
+
+    updateGallery(
+        colorData.images
+    );
+
+}
+
+function updateGallery(
+    images
+){
+
+    const mainImage =
+        document.getElementById(
+            "mainImage"
+        );
+
+    const currentImage =
+        document.getElementById(
+            "currentImage"
+        );
+
+    const thumbnails =
+        document.getElementById(
+            "thumbnailContainer"
+        );
+
+    mainImage.style.opacity =
+        "0";
+
+    setTimeout(function(){
+
+        mainImage.src =
+            images[0];
+
+        mainImage.style.opacity =
+            "1";
+
+        currentImage.textContent =
+            "01";
+
+    },180);
+
+    thumbnails.innerHTML =
+        "";
+
+    images.forEach(function(
+        image,
+        index
+    ){
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+        button.className =
+            "thumbnail";
+
+        if(index === 0){
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+
+        button.type =
+            "button";
+
+        const img =
+            document.createElement(
+                "img"
+            );
+
+        img.src =
+            image;
+
+        img.alt =
+            currentColor +
+            " product image " +
+            (index + 1);
+
+        button.appendChild(
+            img
+        );
+
+        button.addEventListener(
+            "click",
+            function(){
+
+                selectGalleryImage(
+                    index,
+                    images
+                );
+
+            }
+        );
+
+        thumbnails.appendChild(
+            button
+        );
+
+    });
+
+}
+
+function selectGalleryImage(
+    index,
+    images
+){
+
+    currentImageIndex =
+        index;
+
+    const mainImage =
+        document.getElementById(
+            "mainImage"
+        );
+
+    const currentImage =
+        document.getElementById(
+            "currentImage"
+        );
+
+    mainImage.style.opacity =
+        "0";
+
+    setTimeout(function(){
+
+        mainImage.src =
+            images[index];
+
+        mainImage.style.opacity =
+            "1";
+
+        currentImage.textContent =
+            String(index + 1)
+                .padStart(2,"0");
+
+    },150);
+
+    document
+        .querySelectorAll(
+            ".thumbnail"
+        )
+        .forEach(function(item){
+
+            item.classList.remove(
+                "active"
+            );
+
+        });
+
+    const thumbnails =
+        document.querySelectorAll(
+            ".thumbnail"
+        );
+
+    if(thumbnails[index]){
+
+        thumbnails[index]
+            .classList
+            .add("active");
+
+    }
+
+}
+
+function addToCart(){
+
+    const selectedColor =
+        document
+            .getElementById(
+                "selectedColor"
+            )
+            .textContent;
+
+    const product = {
+
+        id:
+            "moroccan-heritage-001-" +
+            selectedColor
+                .toLowerCase()
+                .replace(
+                    /\s+/g,
+                    "-"
+                ),
+
+        name:
+            "Moroccan Heritage Collection",
+
+        price:
+            450,
+
+        currency:
+            "MAD",
+
+        color:
+            selectedColor,
+
+        image:
+            productColors[
+                selectedColor
+            ]
+            .images[0],
+
+        quantity:
+            1
+
+    };
+
+    let cart =
+        JSON.parse(
+            localStorage.getItem(
+                "cart"
+            )
+        ) || [];
+
+    const existing =
+        cart.find(function(item){
+
+            return item.id ===
+                product.id;
+
+        });
+
+    if(existing){
+
+        existing.quantity += 1;
+
+    }
+    else{
+
+        cart.push(
+            product
+        );
+
+    }
+
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(cart)
+    );
+
+    window.location.href =
+        "basket.html";
+
+}
+
+const colorSlider =
+    document.getElementById(
+        "colorSlider"
+    );
+
+let isDown = false;
+
+let startX;
+
+let scrollLeft;
+
+colorSlider.addEventListener(
+    "mousedown",
+    function(e){
+
+        isDown = true;
+
+        startX =
+            e.pageX -
+            colorSlider.offsetLeft;
+
+        scrollLeft =
+            colorSlider.scrollLeft;
+
+    }
+);
+
+colorSlider.addEventListener(
+    "mouseleave",
+    function(){
+
+        isDown = false;
+
+    }
+);
+
+colorSlider.addEventListener(
+    "mouseup",
+    function(){
+
+        isDown = false;
+
+    }
+);
+
+colorSlider.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(!isDown){
+            return;
+        }
+
+        e.preventDefault();
+
+        const x =
+            e.pageX -
+            colorSlider.offsetLeft;
+
+        const walk =
+            (x - startX) * 1.4;
+
+        colorSlider.scrollLeft =
+            scrollLeft - walk;
+
+    }
+);
+
+
+const sameProductsTrack =
+    document.getElementById(
+        "sameProductsTrack"
+    );
+
+const sameProductsPrev =
+    document.getElementById(
+        "sameProductsPrev"
+    );
+
+const sameProductsNext =
+    document.getElementById(
+        "sameProductsNext"
+    );
+
+function getProductScrollAmount(){
+
+    const card =
+        sameProductsTrack
+            .querySelector(
+                ".same-product-card"
+            );
+
+    if(!card){
+        return 300;
+    }
+
+    const cardWidth =
+        card.getBoundingClientRect()
+            .width;
+
+    const gap =
+        parseFloat(
+            getComputedStyle(
+                sameProductsTrack
+            ).columnGap
+        ) || 18;
+
+    return cardWidth + gap;
+
+}
+
+sameProductsNext.addEventListener(
+    "click",
+    function(){
+
+        sameProductsTrack.scrollBy({
+
+            left:
+                getProductScrollAmount(),
+
+            behavior:"smooth"
+
+        });
+
+    }
+);
+
+sameProductsPrev.addEventListener(
+    "click",
+    function(){
+
+        sameProductsTrack.scrollBy({
+
+            left:
+                -getProductScrollAmount(),
+
+            behavior:"smooth"
+
+        });
+
+    }
+);
+
+let productIsDown = false;
+
+let productStartX = 0;
+
+let productScrollLeft = 0;
+
+sameProductsTrack.addEventListener(
+    "mousedown",
+    function(e){
+
+        productIsDown =
+            true;
+
+        sameProductsTrack
+            .style.cursor =
+                "grabbing";
+
+        productStartX =
+            e.pageX -
+            sameProductsTrack
+                .offsetLeft;
+
+        productScrollLeft =
+            sameProductsTrack
+                .scrollLeft;
+
+    }
+);
+
+sameProductsTrack.addEventListener(
+    "mouseleave",
+    function(){
+
+        productIsDown =
+            false;
+
+        sameProductsTrack
+            .style.cursor =
+                "grab";
+
+    }
+);
+
+sameProductsTrack.addEventListener(
+    "mouseup",
+    function(){
+
+        productIsDown =
+            false;
+
+        sameProductsTrack
+            .style.cursor =
+                "grab";
+
+    }
+);
+
+sameProductsTrack.addEventListener(
+    "mousemove",
+    function(e){
+
+        if(!productIsDown){
+            return;
+        }
+
+        e.preventDefault();
+
+        const x =
+            e.pageX -
+            sameProductsTrack
+                .offsetLeft;
+
+        const walk =
+            (x - productStartX) * 1.25;
+
+        sameProductsTrack.scrollLeft =
+            productScrollLeft -
+            walk;
+
+    }
+);
+
+let touchStartX = 0;
+
+let touchStartScroll = 0;
+
+sameProductsTrack.addEventListener(
+    "touchstart",
+    function(e){
+
+        touchStartX =
+            e.touches[0].pageX;
+
+        touchStartScroll =
+            sameProductsTrack
+                .scrollLeft;
+
+    },
+    {
+        passive:true
+    }
+);
+
+sameProductsTrack.addEventListener(
+    "touchmove",
+    function(e){
+
+        const currentX =
+            e.touches[0].pageX;
+
+        const difference =
+            currentX -
+            touchStartX;
+
+        sameProductsTrack.scrollLeft =
+            touchStartScroll -
+            difference;
+
+    },
+    {
+        passive:true
+    }
+);
+
+/* =====================================================
+   NAVBAR SCROLL EFFECT
+===================================================== */
+(function() {
+    const navbar = document.getElementById('navbar');
+    let ticking = false;
+
+    function updateNavbar() {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+        if (currentScroll > 30) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateNavbar();
+            });
+            ticking = true;
+        }
+    });
+
+    setTimeout(updateNavbar, 100);
+})();
+
+/* =====================================================
+   CART FUNCTIONS
+===================================================== */
+function openCart() {
+    document.getElementById("cartDrawer").classList.add("active");
+    document.getElementById("cartOverlay").classList.add("active");
+    document.body.style.overflow = "hidden";
+}
+
+function closeCart() {
+    document.getElementById("cartDrawer").classList.remove("active");
+    document.getElementById("cartOverlay").classList.remove("active");
+    document.body.style.overflow = "";
+}
+
+function changeQty(button, change) {
+    const item = button.closest(".cart-item");
+    const number = item.querySelector(".qty-number");
+    let qty = parseInt(number.textContent);
+    qty += change;
+    if (qty < 1) qty = 1;
+    number.textContent = qty;
+    updateCart();
+}
+
+function removeItem(button) {
+    const item = button.closest(".cart-item");
+    item.style.opacity = "0";
+    item.style.transform = "translateX(30px)";
+    setTimeout(() => {
+        item.remove();
+        updateCart();
+    }, 250);
+}
+
+function updateCart() {
+    const items = document.querySelectorAll(".cart-item");
+    let subtotal = 0;
+    let totalQuantity = 0;
+    items.forEach(item => {
+        const price = parseFloat(item.dataset.price);
+        const quantity = parseInt(item.querySelector(".qty-number").textContent);
+        subtotal += price * quantity;
+        totalQuantity += quantity;
+    });
+    document.getElementById("subtotal").textContent = "$" + subtotal.toFixed(0);
+    document.getElementById("cartCount").textContent = totalQuantity;
+    const emptyCart = document.getElementById("emptyCart");
+    const cartItems = document.getElementById("cartItems");
+    const footer = document.getElementById("cartFooter");
+    if (items.length === 0) {
+        emptyCart.classList.add("active");
+        cartItems.style.display = "none";
+        footer.style.display = "none";
+    } else {
+        emptyCart.classList.remove("active");
+        cartItems.style.display = "block";
+        footer.style.display = "block";
+    }
+    const shippingMessage = document.getElementById('shippingMessage');
+    const shippingPercent = document.getElementById('shippingPercent');
+    const shippingProgressBar = document.getElementById('shippingProgressBar');
+    const shippingCost = document.getElementById('shippingCost');
+    const totalElement = document.getElementById('total');
+    const freeShippingThreshold = 120;
+    const shippingPrice = 20;
+    let progressPercent = Math.min((subtotal / freeShippingThreshold) * 100, 100);
+    let remainingAmount = Math.max(freeShippingThreshold - subtotal, 0);
+    shippingProgressBar.style.width = progressPercent + '%';
+    shippingPercent.textContent = Math.round(progressPercent) + '%';
+    let shippingCostValue = subtotal >= freeShippingThreshold ? 0 : shippingPrice;
+    shippingCost.textContent = shippingCostValue === 0 ? 'Free' : '$' + shippingCostValue;
+    let totalValue = subtotal + shippingCostValue;
+    totalElement.textContent = '$' + totalValue.toFixed(0);
+    if (subtotal >= freeShippingThreshold) {
+        shippingMessage.innerHTML = 'Brilliant! You\'ve unlocked FREE delivery! 🎉';
+        shippingPercent.style.display = 'none';
+        shippingProgressBar.style.width = '100%';
+    } else {
+        shippingMessage.innerHTML = `You're only <strong>$${remainingAmount.toFixed(0)}</strong> away from FREE delivery! 🎁`;
+        shippingPercent.style.display = 'inline';
+    }
+}
+
+document.addEventListener("keydown", function(e) {
+    if (e.key === "Escape") closeCart();
+});
+
+/* =====================================================
+   SIDE MENU FUNCTIONS
+===================================================== */
+const openButton = document.getElementById("menuOpenButton");
+const closeButton = document.getElementById("menuCloseButton");
+const navigation = document.getElementById("sideNavigation");
+const backdrop = document.getElementById("menuBackdrop");
+
+function openMenu() {
+    navigation.classList.add("active");
+    backdrop.classList.add("active");
+    document.body.classList.add("menu-is-open");
+}
+
+function closeMenu() {
+    navigation.classList.remove("active");
+    backdrop.classList.remove("active");
+    document.body.classList.remove("menu-is-open");
+}
+
+openButton.addEventListener("click", openMenu);
+closeButton.addEventListener("click", closeMenu);
+backdrop.addEventListener("click", closeMenu);
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") closeMenu();
+});
+
+document.querySelectorAll(".category-item").forEach(function(category) {
+    category.addEventListener("click", function() {
+        closeMenu();
+    });
+});
+
+let menuTouchStartX = 0;
+let menuTouchEndX = 0;
+
+navigation.addEventListener("touchstart", function(event) {
+    menuTouchStartX = event.touches[0].clientX;
+}, { passive: true });
+
+navigation.addEventListener("touchmove", function(event) {
+    menuTouchEndX = event.touches[0].clientX;
+}, { passive: true });
+
+navigation.addEventListener("touchend", function() {
+    const distance = menuTouchEndX - menuTouchStartX;
+    if (distance < -80) closeMenu();
+    menuTouchStartX = 0;
+    menuTouchEndX = 0;
+});
+
+/* =====================================================
+   SEARCH ENGINE
+===================================================== */
+const products = [{
+    name: "Handmade Moroccan Berber Carpet",
+    category: "Moroccan Carpets",
+    price: "1,290 MAD",
+    image: "https://images.unsplash.com/photo-1600166898405-da9535204843?w=700"
+  },
+  {
+    name: "Luxury Moroccan Leather Pouf",
+    category: "Moroccan Leather",
+    price: "499 MAD",
+    image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=700"
+  },
+  {
+    name: "Traditional Moroccan Ceramic Pottery",
+    category: "Pottery & Decor",
+    price: "249 MAD",
+    image: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=700"
+  },
+  {
+    name: "Handmade Moroccan Ceramic Bowl",
+    category: "Pottery & Decor",
+    price: "179 MAD",
+    image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?w=700"
+  },
+  {
+    name: "Natural Moroccan Argan Oil",
+    category: "Argan Oil",
+    price: "159 MAD",
+    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=700"
+  },
+  {
+    name: "Moroccan Handmade Straw Basket",
+    category: "Straw Home Decor",
+    price: "199 MAD",
+    image: "https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=700"
+  },
+  {
+    name: "Luxury Moroccan Cushion Cover",
+    category: "Pillow Cases",
+    price: "129 MAD",
+    image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=700"
+  },
+  {
+    name: "Moroccan Handmade Blanket",
+    category: "Moroccan Blankets",
+    price: "449 MAD",
+    image: "https://images.unsplash.com/photo-1583845112203-454c1b3e7b8f?w=700"
+  },
+  {
+    name: "Moroccan Copper Side Table",
+    category: "Copper Furniture",
+    price: "2,490 MAD",
+    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=700"
+  },
+  {
+    name: "Traditional Moroccan Pastry Selection",
+    category: "Moroccan Pastries",
+    price: "299 MAD",
+    image: "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=700"
+  }
+];
+
+const trigger = document.getElementById("searchTrigger");
+const overlay = document.getElementById("searchOverlay");
+const closeBtn = document.getElementById("closeSearch");
+const input = document.getElementById("searchInput");
+const clearBtn = document.getElementById("clearSearch");
+const defaultContent = document.getElementById("defaultContent");
+const resultsContainer = document.getElementById("resultsContainer");
+
+function openSearch() {
+  overlay.classList.add("active");
+  overlay.classList.remove("closing");
+  document.body.style.overflow = "hidden";
+  setTimeout(() => {
+    input.focus();
+  }, 500);
+}
+
+function closeSearch() {
+  overlay.classList.add("closing");
+  setTimeout(() => {
+    overlay.classList.remove("active");
+    overlay.classList.remove("closing");
+    document.body.style.overflow = "";
+    input.value = "";
+    clearBtn.style.display = "none";
+    defaultContent.style.display = "block";
+    resultsContainer.innerHTML = "";
+  }, 550);
+}
+
+trigger.addEventListener("click", openSearch);
+closeBtn.addEventListener("click", closeSearch);
+overlay.addEventListener("click", (e) => {
+  if (e.target === overlay) closeSearch();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeSearch();
+  if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+    e.preventDefault();
+    openSearch();
+  }
+});
+
+function normalize(text) {
+  return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^a-z0-9\s]/g, "").trim();
+}
+
+function smartSearch(query) {
+  const normalizedQuery = normalize(query);
+  if (!normalizedQuery) {
+    defaultContent.style.display = "block";
+    resultsContainer.innerHTML = "";
+    clearBtn.style.display = "none";
+    return;
+  }
+  clearBtn.style.display = "flex";
+  defaultContent.style.display = "none";
+  const queryWords = normalizedQuery.split(/\s+/).filter(Boolean);
+  const scoredResults = products.map(product => {
+    const name = normalize(product.name);
+    const category = normalize(product.category);
+    let score = 0;
+    if (name === normalizedQuery) score += 200;
+    if (name.includes(normalizedQuery)) score += 100;
+    if (category.includes(normalizedQuery)) score += 80;
+    queryWords.forEach(word => {
+      if (name.includes(word)) score += 35;
+      if (category.includes(word)) score += 25;
+      name.split(" ").forEach(nameWord => {
+        if (nameWord.startsWith(word)) score += 15;
+      });
+    });
+    return {
+      ...product,
+      score
+    };
+  }).filter(item => item.score > 0).sort((a, b) => b.score - a.score);
+  renderResults(scoredResults, normalizedQuery);
+}
+
+function highlight(text, query) {
+  const words = query.split(/\s+/).filter(Boolean);
+  let output = text;
+  words.forEach(word => {
+    if (!word) return;
+    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    output = output.replace(new RegExp(`(${escaped})`, "gi"), "<strong>$1</strong>");
+  });
+  return output;
+}
+
+function renderResults(results, query) {
+  if (!results.length) {
+    resultsContainer.innerHTML = `
+    <div class="empty">
+      <div class="empty-circle">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M16.5 16.5L21 21"></path>
+        </svg>
+      </div>
+      <div class="empty-title">Nothing found</div>
+      <div class="empty-text">Try another word, category or product.</div>
+    </div>
+  `;
+    return;
+  }
+  let html = `<div class="results-title">${results.length} results found</div>`;
+  results.forEach((product, index) => {
+    const match = Math.min(99, Math.max(78, Math.round(product.score / 2)));
+    html += `
+    <div class="result-item" style="animation-delay:${index * 45}ms" data-product="${product.name}">
+      <img class="result-image" src="${product.image}" alt="${product.name}" loading="lazy">
+      <div class="result-info">
+        <div class="result-name">${highlight(product.name, query)}</div>
+        <div class="result-category">${product.category}</div>
+        <div class="result-bottom">
+          <div class="result-price">${product.price}</div>
+          <div class="match-badge">${match}% match</div>
+        </div>
+      </div>
+      <div class="result-arrow">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18L15 12L9 6"></path>
+        </svg>
+      </div>
+    </div>
+  `;
+  });
+  resultsContainer.innerHTML = html;
+  document.querySelectorAll(".result-item").forEach(item => {
+    item.addEventListener("click", () => {
+      console.log("Selected:", item.dataset.product);
+    });
+  });
+}
+
+input.addEventListener("input", () => {
+  smartSearch(input.value);
+});
+
+clearBtn.addEventListener("click", () => {
+  input.value = "";
+  input.focus();
+  smartSearch("");
+});
+
+document.querySelectorAll(".tag").forEach(tag => {
+  tag.addEventListener("click", () => {
+    const value = tag.textContent.trim();
+    input.value = value;
+    smartSearch(value);
+    input.focus();
+  });
+});
+
+document.querySelectorAll(".discover-card").forEach(card => {
+  card.addEventListener("click", () => {
+    const value = card.dataset.search;
+    input.value = value;
+    smartSearch(value);
+    input.focus();
+  });
+});
+
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    const first = document.querySelector(".result-item");
+    if (first) first.click();
+  }
+});
+
+</script>
+
+
+<!-- Firebase product data + the same navbar basket used on the other pages. -->
+<script>
+/* Embedded into product.html. Prices in Firebase use USD (priceUSD or price).
+ * products/{key}: name, categoryId, description, image, images[], variants[],
+ * details:{Craft:...,Origin:...,Style:...}, heritage:{title,description}, active.
+ * Each variant may supply name/color, image/images, priceUSD, stock, available.
+ * Public storefront reads only. No admin credentials or database writes.
+ */
+(() => {
+  'use strict';
+  function start() {
+    const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+    const text=(s,v)=>{const el=typeof s==='string'?$(s):s;if(el)el.textContent=String(v??'');};
+    const amount=v=>(typeof v==='number'||typeof v==='string'&&v.trim()!=='')&&Number.isFinite(Number(v))&&Number(v)>=0?Number(v):null;
+    const rows=v=>Object.entries(v||{}).filter(([,x])=>x&&typeof x==='object').map(([key,x])=>({...x,key,id:String(x.id??key)}))
+      .filter(x=>x.active!==false).sort((a,b)=>(Number(a.order)||0)-(Number(b.order)||0));
+    const safeURL=v=>{try{const u=new URL(String(v||''),location.href);return v&&['https:','http:'].includes(u.protocol)?u.href:''}catch{return ''}};
+    const image=(el,src,alt)=>{const value=safeURL(src);el.style.visibility=value?'':'hidden';if(value)el.src=value;else el.removeAttribute('src');el.alt=String(alt||'');};
+    const images=v=>[...new Set((typeof v==='string'?[v]:Object.values(v||{})).map(x=>safeURL(typeof x==='string'?x:x?.url||x?.image||x?.src)).filter(Boolean))];
+    const imageList=p=>{const all=images(p?.images);return all.length?all:images(p?.image);};
+    const storage={get(k){try{return localStorage.getItem(k)}catch{return null}},set(k,v){try{localStorage.setItem(k,v)}catch{}},remove(k){try{localStorage.removeItem(k)}catch{}}};
+    const savedCurrency=storage.get('handben-currency');
+    const rates={USD:1,EUR:.87,GBP:.74,MAD:9.05}; // Same editable fallback rates as the existing pages; not live FX.
+    let currency=Object.hasOwn(rates,savedCurrency)?savedCurrency:'USD',country='US';
+    function countryCurrency(c){if(c==='MA')return 'MAD';if(['GB','GG','IM','JE'].includes(c))return 'GBP';
+      return 'AT BE BG HR CY EE FI FR DE GR IE IT LV LT LU MT NL PT SK SI ES AD MC SM VA ME XK'.split(' ').includes(c)?'EUR':'USD';}
+    const format=v=>new Intl.NumberFormat(currency==='MAD'?'fr-MA':'en-US',{style:'currency',currency,maximumFractionDigits:2}).format(v*rates[currency]);
+    function setCurrency(c,remember=false){if(!Object.hasOwn(rates,c))return;currency=c;if(remember)storage.set('handben-currency',c);refreshPrices();}
+    window.HandBenCurrency={format,get code(){return currency},get country(){return country},get rates(){return {...rates}},
+      set(c){setCurrency(String(c).toUpperCase(),true)},useAutomatic(){storage.remove('handben-currency');setCurrency(countryCurrency(country))}};
+    window.HandBenSettings={freeShippingThresholdUSD:120,deliveryChargeUSD:15};
+    let catalog=[],categories=[],product=null,variants=[],variant=null,gallery=[],galleryVersion=0;
+    const requestedID=()=>{const p=new URL(location.href).searchParams;return p.get('id')||p.get('product')||p.get('productId')||''};
+    let wanted=requestedID(),productsReady=false;
+    const relatedTemplate=$('.same-product-card').cloneNode(true),menuTemplate=$('.category-item').cloneNode(true);
+    const categoryFor=p=>categories.find(c=>c.id===String(p.categoryId)||c.key===String(p.categoryId)||c.name===p.category);
+    const categoryName=p=>categoryFor(p)?.name||p.categoryName||p.category||'';
+    const productPrice=p=>amount(p?.priceUSD??p?.price);
+    const selectedPrice=()=>productPrice(variant)??productPrice(product);
+    const variantName=v=>String(v?.color||v?.name||'');
+    const productLink=p=>'product.html?id='+encodeURIComponent(p.key??p.id);
+    function inStock(p){return p&&p.available!==false&&p.inStock!==false&&(amount(p.stock)===null||amount(p.stock)>0);}
+    function canBuy(){return !!product&&selectedPrice()!==null&&inStock(product)&&(!variants.length||!!variant&&inStock(variant));}
+    function refreshPrices(){
+      text('.price',selectedPrice()===null?'—':new Intl.NumberFormat(currency==='MAD'?'fr-MA':'en-US',{maximumFractionDigits:2}).format(selectedPrice()*rates[currency]));
+      text('.currency',currency);
+      $$('[data-price-usd]').forEach(el=>text(el,format(Number(el.dataset.priceUsd))));
+      window.dispatchEvent(new CustomEvent('handben:currencychange',{detail:{currency,rates:{...rates}}}));
+      if($('#searchInput').value)window.smartSearch($('#searchInput').value);
+    }
+    function updateBuyButton(){const allowed=canBuy();$('.image-add-to-cart').disabled=!allowed;
+      text('.image-cart-title',!product?'Select a product':selectedPrice()===null?'Price unavailable':allowed?(product.cta?.text||'Add to cart'):'Unavailable');}
+    function selectImage(index,animate=true){
+      const token=++galleryVersion,el=$('#mainImage'),src=gallery[index];
+      text('#currentImage',src?String(index+1).padStart(2,'0'):'00');
+      $$('.thumbnail').forEach((b,i)=>b.classList.toggle('active',i===index));
+      if(!src){image(el,'','');return;}
+      el.style.opacity=animate?'0':'1';
+      const show=()=>{if(token!==galleryVersion)return;image(el,src,(product?.name||'Product')+' '+(index+1));el.style.opacity='1';};
+      if(animate)setTimeout(show,150);else show();
+    }
+    function updateGallery(sources){gallery=images(sources);const container=$('#thumbnailContainer');container.replaceChildren();
+      gallery.forEach((src,i)=>{const b=document.createElement('button');b.type='button';b.className='thumbnail';
+        const img=document.createElement('img');image(img,src,(product?.name||'Product')+' image '+(i+1));b.append(img);
+        b.addEventListener('click',()=>selectImage(i));container.append(b);});
+      text('#totalImages',String(gallery.length).padStart(2,'0'));selectImage(0);
+    }
+    function chooseVariant(id){variant=variants.find(v=>v.id===id)||null;
+      $$('.color-option').forEach(el=>el.classList.toggle('active',el.dataset.variantId===variant?.id));
+      text('#selectedColor',variantName(variant));
+      const specific=imageList(variant);updateGallery(specific.length?specific:imageList(product));
+      refreshPrices();updateBuyButton();
+      if(variant){const u=new URL(location.href);u.searchParams.set('variant',variant.id);history.replaceState(null,'',u);}
+    }
+    window.changeColor=(name)=>{const v=variants.find(v=>v.id===name||variantName(v)===name);if(v)chooseVariant(v.id)};
+    function renderDetails(){
+      const root=$('.details');root.replaceChildren();
+      const raw=product.details||product.specifications;
+      let entries=Array.isArray(raw)?raw.map(x=>[x.label||x.name,x.value]):raw&&typeof raw==='object'?Object.entries(raw).map(([k,v])=>[v?.label||k,v?.value??v]):[];
+      if(!entries.length&&product.detailsEnabled!==false)entries=[['Craft',product.craft||'—'],['Origin',product.origin||'—'],['Style',product.style||'—']];
+      entries.forEach(([label,value])=>{if(!label||value===null||typeof value==='object')return;
+        const row=document.createElement('div');row.className='detail';
+        const a=document.createElement('span'),b=document.createElement('span');a.className='detail-label';b.className='detail-value';text(a,label);text(b,value);row.append(a,b);root.append(row);});
+      text('.heritage-symbol',product.heritage?.symbol??'⟡');
+      text('.heritage-content strong',product.heritage?.title??product.heritageTitle??'Made with Moroccan soul.');
+      text('.heritage-content span',product.heritage?.description??product.heritageDescription??'Inspired by generations of craftsmanship, presented for the modern home.');
+    }
+    function renderRelated(){const track=$('#sameProductsTrack');track.replaceChildren();
+      if(!product)return;
+      const group=product.categoryId??product.category;
+      let candidates=catalog.filter(p=>p.key!==product.key).sort((a,b)=>Number((b.categoryId??b.category)===group)-Number((a.categoryId??a.category)===group)).slice(0,10);
+      const header=product.relatedHeader||{};
+      text('.same-products-kicker',header.kicker??'Explore More');text('.same-products-title',header.title??'You May Also Like');text('.same-products-subtitle',header.subtitle??'Discover more pieces from our Moroccan collection.');
+      if(product.relatedMode==='curated'||product.related){candidates=rows(product.related).map(r=>{const target=catalog.find(p=>p.key===String(r.productId));return target?{...target,name:r.name||target.name,priceUSD:r.priceUSD??target.priceUSD,categoryName:r.category||categoryName(target),image:r.image||target.image,images:r.image?[r.image]:target.images}:null;}).filter(Boolean);}
+      candidates.forEach((p,i)=>{const card=relatedTemplate.cloneNode(true);card.href=productLink(p);card.dataset.productId=p.key;
+        image($('img',card),imageList(p)[0],p.name);text($('.same-product-number',card),String(i+1).padStart(2,'0'));
+        text($('.same-product-category',card),p.categoryName||categoryName(p));text($('.same-product-name',card),p.name||p.title);
+        const price=$('.same-product-price',card);delete price.dataset.priceUsd;
+        const value=productPrice(p);if(value!==null){price.dataset.priceUsd=value;text(price,format(value));}else text(price,'Price unavailable');track.append(card);});
+      $('#sameProductsPrev').disabled=!candidates.length;$('#sameProductsNext').disabled=!candidates.length;
+    }
+    function status(title,message){product=null;variant=null;variants=[];galleryVersion++;
+      text('.product-title',title);text('.description',message);text('.product-information .category','');
+      $('#colorSlider').replaceChildren();text('#selectedColor','');updateGallery([]);$('.details').replaceChildren();
+      $('#sameProductsTrack').replaceChildren();updateBuyButton();refreshPrices();text('.heritage-content strong','');text('.heritage-content span','');}
+    function renderProduct(){
+      if(!wanted){status('Select a product','Choose a product from our collections to see its details.');return;}
+      if(!productsReady){status('Loading product…','Please wait while we load this product.');return;}
+      const next=catalog.find(p=>p.key===wanted||p.id===wanted);
+      if(!next){status('Product unavailable','This product could not be found or is no longer available.');return;}
+      const previous=product?.key===next.key?variant?.id:null;product=next;
+      document.title=(product.name||product.title||'Product')+' | HandBen';
+      text('.product-title',product.name||product.title);text('.product-information .category',product.collection??categoryName(product));
+      text('.description',product.description||'');if(product.cta?.image)image($('.image-add-to-cart img'),product.cta.image,'');renderDetails();
+      variants=rows(product.variants||product.colors);const colors=$('#colorSlider');colors.replaceChildren();
+      variants.forEach(v=>{const b=document.createElement('button');b.type='button';b.className='color-option';b.dataset.variantId=v.id;
+        b.setAttribute('aria-label',variantName(v)||'Product option');const img=document.createElement('img');
+        image(img,v.thumbnail||imageList(v)[0]||imageList(product)[0],variantName(v));b.append(img);b.addEventListener('click',()=>chooseVariant(v.id));colors.append(b);});
+      text('.color-label',product.variantLabel||'Select color');
+      const requestedVariant=new URL(location.href).searchParams.get('variant');
+      chooseVariant((variants.find(v=>v.id===(previous||requestedVariant))||variants[0])?.id);
+      renderRelated();
+    }
+    window.addToCart=()=>{
+      if(!canBuy())return;
+      try{
+        const item={id:JSON.stringify([product.key,variant?.id||'']),productId:product.key,variantId:variant?.id||'',
+          name:String(product.name||product.title||''),priceUSD:selectedPrice(),price:selectedPrice(),currency:'USD',
+          color:variantName(variant),image:imageList(variant)[0]||imageList(product)[0]||'',quantity:1};
+        const maxStock=Math.min(amount(product.stock)??Infinity,amount(variant?.stock)??Infinity);
+        window.HandBenCart.add(item,maxStock);
+        if(typeof window.openCart==='function') window.openCart();
+      }catch(error){text('.image-cart-title',error.message||'Unable to save cart');}
+    };
+    function renderMenu(){const nav=$('.category-scroll');nav.replaceChildren();
+      categories.forEach((c,i)=>{const link=menuTemplate.cloneNode(true);link.href='categories.html?category='+encodeURIComponent(c.id);
+        text($('.item-number',link),String(i+1).padStart(2,'0'));text($('.item-name',link),c.name);text($('.item-subtitle',link),c.subtitle||'');
+        image($('img',link),c.image||c.icon,c.name);link.addEventListener('click',()=>window.closeMenu?.());
+        if(i>=8){link.style.opacity='1';link.style.transform='none';}nav.append(link);});text('.footer-count',String(categories.length).padStart(2,'0')+' Collections');}
+    window.smartSearch=query=>{
+      const q=String(query).trim().toLowerCase(),words=q.split(/\s+/).filter(Boolean),root=$('#resultsContainer');root.replaceChildren();
+      $('#defaultContent').style.display=q?'none':'block';$('#clearSearch').style.display=q?'flex':'none';if(!q)return;
+      const found=catalog.map(p=>{const name=String(p.name||p.title||'').toLowerCase(),cat=String(categoryName(p)).toLowerCase();
+        const score=(name.includes(q)?100:0)+(cat.includes(q)?80:0)+words.reduce((n,w)=>n+(name.includes(w)?35:0)+(cat.includes(w)?25:0),0);return {p,score};}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score);
+      if(!found.length){root.innerHTML='<div class="empty"><div class="empty-circle"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"></circle><path d="M16.5 16.5L21 21"></path></svg></div><div class="empty-title">Nothing found</div><div class="empty-text">Try another word, category or product.</div></div>';return;}
+      const title=document.createElement('div');title.className='results-title';text(title,found.length+' results found');root.append(title);
+      found.forEach(({p,score},i)=>{const row=document.createElement('div');row.className='result-item';row.style.animationDelay=i*45+'ms';row.tabIndex=0;row.setAttribute('role','link');
+        row.innerHTML='<img class="result-image" loading="lazy"><div class="result-info"><div class="result-name"></div><div class="result-category"></div><div class="result-bottom"><div class="result-price"></div><div class="match-badge"></div></div></div><div class="result-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18L15 12L9 6"></path></svg></div>';
+        image($('img',row),imageList(p)[0],p.name);text($('.result-name',row),p.name||p.title);text($('.result-category',row),categoryName(p));
+        text($('.result-price',row),productPrice(p)!==null?format(productPrice(p)):'Price unavailable');text($('.match-badge',row),Math.min(99,Math.max(78,Math.round(score/2)))+'% match');
+        row.addEventListener('click',()=>location.assign(productLink(p)));row.addEventListener('keydown',e=>{if(e.key==='Enter')row.click()});root.append(row);});
+    };
+    function drag(el,multiplier){let down=null,moved=false;
+      el.addEventListener('mousedown',e=>{if(e.button!==0)return;down={x:e.clientX,left:el.scrollLeft};moved=false;});
+      el.addEventListener('mousemove',e=>{if(!down)return;const dx=e.clientX-down.x;if(Math.abs(dx)>6)moved=true;
+        if(moved){e.preventDefault();el.scrollLeft=down.left-dx*multiplier;}});
+      const end=()=>{down=null;};el.addEventListener('mouseleave',end);window.addEventListener('mouseup',end);
+      el.addEventListener('dragstart',e=>e.preventDefault());el.addEventListener('click',e=>{if(moved){e.preventDefault();e.stopPropagation();moved=false}},true);
+    }
+    drag($('#colorSlider'),1.4);drag($('#sameProductsTrack'),1.25);
+    for(const [id,dir] of [['sameProductsPrev',-1],['sameProductsNext',1]])$('#'+id).addEventListener('click',()=>{
+      const track=$('#sameProductsTrack'),card=$('.same-product-card',track),step=card?card.getBoundingClientRect().width+(parseFloat(getComputedStyle(track).columnGap)||18):300;
+      track.scrollBy({left:dir*step,behavior:'smooth'});});
+    window.addEventListener('popstate',()=>{wanted=requestedID();renderProduct()});
+    window.addEventListener('storage',e=>{if(e.key==='handben-currency')setCurrency(e.newValue||countryCurrency(country))});
+    renderProduct();
+    const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),6000);
+    fetch('https://currency-location.anasbenjelloun61.workers.dev',{signal:controller.signal}).then(r=>{if(!r.ok)throw Error('Location unavailable');return r.json()})
+      .then(data=>{const c=String(data.country_code||data.country||'').toUpperCase();if(/^[A-Z]{2}$/.test(c))country=c;
+        if(!storage.get('handben-currency'))setCurrency(countryCurrency(country));}).catch(()=>{}).finally(()=>clearTimeout(timer));
+    async function connect(){
+      const [{initializeApp,getApps},{getDatabase,ref,onValue}]=await Promise.all([
+        import('https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js'),import('https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js')]);
+      const app=getApps().find(a=>a.name==='handben-product')||initializeApp({apiKey:'AIzaSyDLexJbNt0mjBno7phwWBoisoVoM5OYJTc',
+        authDomain:'handben-9ef15.firebaseapp.com',databaseURL:'https://handben-9ef15-default-rtdb.europe-west1.firebasedatabase.app',
+        projectId:'handben-9ef15',storageBucket:'handben-9ef15.firebasestorage.app',messagingSenderId:'1021151627645',
+        appId:'1:1021151627645:web:3b6c11341c48fae9c2a414'},'handben-product');const db=getDatabase(app);
+      onValue(ref(db,'products'),snapshot=>{catalog=rows(snapshot.val());productsReady=true;renderProduct();},error=>{
+        console.error('Product read failed:',error.code);status('Unable to load product','Please refresh the page to try again.');});
+      onValue(ref(db,'categories'),snapshot=>{categories=rows(snapshot.val());renderMenu();if(product){text('.product-information .category',product.collection??categoryName(product));renderRelated();}},error=>console.error('Categories:',error.code));
+      onValue(ref(db,'settings'),snapshot=>{const s=snapshot.val()||{},r=s.currency?.rates||s.currencies?.rates||s.currencyRates||{},shipping=s.shipping||{};
+        for(const c of ['EUR','GBP','MAD'])if(amount(r[c])>0)rates[c]=Number(r[c]);
+        window.HandBenSettings.freeShippingThresholdUSD=amount(shipping.freeThresholdUSD??shipping.freeDeliveryThresholdUSD??s.freeShippingThresholdUSD)??120;
+        window.HandBenSettings.deliveryChargeUSD=amount(shipping.deliveryChargeUSD??shipping.chargeUSD??s.deliveryChargeUSD)??15;
+        refreshPrices();},error=>console.error('Settings:',error.code));
+    }
+    connect().catch(error=>{console.error('Firebase unavailable:',error.message);status('Unable to load product','Please refresh the page to try again.');});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+
+/* Shared local cart. Client totals are display estimates; payment must validate server-side. */
+(() => {
+  function start(){
+    const $=(s,r=document)=>r.querySelector(s),template=$('#cartItems .cart-item')?.cloneNode(true);
+    if(!template)return;
+    const key='cart',fallbackRates={USD:1,EUR:.87,GBP:.74,MAD:9.05};
+    const number=v=>(typeof v==='number'||typeof v==='string'&&v.trim()!=='')&&Number.isFinite(Number(v))&&Number(v)>=0?Number(v):null;
+    function read(){const raw=localStorage.getItem(key);if(!raw)return [];
+      const list=JSON.parse(raw);if(!Array.isArray(list))throw Error('Saved cart could not be read');
+      return list.filter(x=>x&&typeof x==='object').map(x=>{
+        const base=number(x.priceUSD),rate=(window.HandBenCurrency?.rates||fallbackRates)[x.currency||'USD'];
+        const price=base??(rate&&number(x.price)!==null?Number(x.price)/rate:null);
+        if(price===null)throw Error('A saved cart price needs review');
+        return {...x,id:String(x.id??JSON.stringify([x.productId,x.variantId||''])),priceUSD:price,price:price,currency:'USD',quantity:Math.max(1,Math.floor(Number(x.quantity)||1))};
+      });}
+    let memory=[];
+    function latest(){try{return read()}catch{return memory}}
+    const money=v=>window.HandBenCurrency?.format(v)||new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(v);
+    function safeImage(v){try{const u=new URL(v,location.href);return ['http:','https:'].includes(u.protocol)?u.href:''}catch{return ''}}
+    function render(){memory=latest();const root=$('#cartItems');root.replaceChildren();let subtotal=0,qty=0;
+      memory.forEach(item=>{const row=template.cloneNode(true);row.dataset.cartId=item.id;row.dataset.price=item.priceUSD;
+        const name=$('.product-name,.cart-product-name',row),meta=$('.product-meta,.cart-product-meta',row),img=$('img',row);
+        name.textContent=item.name||'Product';meta.textContent=item.color||item.variantName||'';
+        const src=safeImage(item.image);if(src)img.src=src;else img.removeAttribute('src');img.alt=item.name||'Product';
+        $('.qty-number',row).textContent=item.quantity;$('.product-price,.cart-product-price',row).textContent=money(item.priceUSD*item.quantity);
+        subtotal+=item.priceUSD*item.quantity;qty+=item.quantity;root.append(row);});
+      $('#cartCount').textContent=qty;$('.cart-subtitle').textContent=qty+' beautiful pieces selected';
+      $('#subtotal').textContent=money(subtotal);const settings=window.HandBenSettings||{};
+      const threshold=number(settings.freeShippingThresholdUSD)??120,delivery=number(settings.deliveryChargeUSD)??15;
+      const cost=qty&&subtotal<threshold?delivery:0;$('#shippingCost').textContent=cost?money(cost):'Free';$('#total').textContent=money(subtotal+cost);
+      $('#emptyCart').classList.toggle('active',!qty);root.style.display=qty?'block':'none';$('#cartFooter').style.display=qty?'block':'none';
+      const percent=threshold>0?Math.min(100,subtotal/threshold*100):100;$('#shippingProgressBar').style.width=percent+'%';
+      $('#shippingPercent').textContent=Math.round(percent)+'%';$('#shippingPercent').style.display=subtotal>=threshold?'none':'inline';
+      const msg=$('#shippingMessage');msg.replaceChildren();if(subtotal>=threshold)msg.textContent="Brilliant! You've unlocked FREE delivery! 🎉";
+      else{const strong=document.createElement('strong');strong.textContent=money(threshold-subtotal);msg.append("You're only ",strong,' away from FREE delivery! 🎁');}
+    }
+    function save(items){localStorage.setItem(key,JSON.stringify(items));memory=items;render();}
+    window.HandBenCart={add(item,max=Infinity){const items=read(),existing=items.find(x=>x.id===item.id);
+      if((existing?.quantity||0)+1>max)throw Error('Maximum available quantity reached');
+      if(existing){Object.assign(existing,{...item,quantity:existing.quantity+1});}else items.push(item);save(items);},read};
+    window.updateCart=render;
+    window.openCart=()=>{$('#cartDrawer').classList.add('active');$('#cartOverlay').classList.add('active');document.body.style.overflow='hidden';render();};
+    window.closeCart=()=>{$('#cartDrawer').classList.remove('active');$('#cartOverlay').classList.remove('active');document.body.style.overflow='';};
+    window.changeQty=(button,change)=>{try{const id=button.closest('.cart-item').dataset.cartId,items=read(),item=items.find(x=>x.id===id);if(item){item.quantity=Math.max(1,item.quantity+change);save(items);}}catch{ $('.cart-subtitle').textContent='Unable to save cart changes'; }};
+    window.removeItem=button=>{const row=button.closest('.cart-item'),id=row.dataset.cartId;row.style.opacity='0';row.style.transform='translateX(30px)';
+      setTimeout(()=>{try{save(read().filter(x=>x.id!==id))}catch{row.style.opacity='1';row.style.transform='';$('.cart-subtitle').textContent='Unable to save cart changes'}},250);};
+    document.addEventListener('keydown',e=>{if(e.key==='Escape')window.closeCart()});
+    window.addEventListener('handben:currencychange',render);window.addEventListener('storage',e=>{if(e.key===key||e.key===null)render()});
+    document.querySelectorAll(".checkout-btn").forEach(button=>{
+      button.type="button";
+      button.addEventListener("click",()=>{ window.location.href="checkout.html"; });
+    });
+    render();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start,{once:true});else start();
+})();
+
+</script>
+</body>
+</html>
