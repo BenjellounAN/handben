@@ -3020,6 +3020,56 @@ body{
   .category-slider-section{top:16.58vw}
 }
 </style>
+    <style>
+/* تقليص ارتفاع المقدمة والصورة التقديمية فقط */
+
+.page-intro {
+  min-height: 410px;
+  padding-top: 215px;
+  padding-bottom: 52px;
+}
+
+.hero {
+  height: clamp(320px, 38vw, 500px);
+}
+
+/* الأجهزة اللوحية والهواتف */
+@media (max-width: 900px) {
+  .page-intro {
+    min-height: 350px;
+    padding-top: 155px;
+    padding-bottom: 48px;
+  }
+
+  .hero {
+    height: 320px;
+  }
+}
+
+/* شاشات الهواتف */
+@media (max-width: 700px) {
+  .page-intro {
+    min-height: 315px;
+    padding: 130px 24px 42px;
+  }
+
+  .hero {
+    height: 275px;
+  }
+}
+
+/* الهواتف الصغيرة */
+@media (max-width: 420px) {
+  .page-intro {
+    min-height: 290px;
+    padding: 118px 20px 38px;
+  }
+
+  .hero {
+    height: 245px;
+  }
+}
+</style>
 </head><body>
   <!-- ===== NEW NAVBAR (من الكود الحالي) ===== -->
   <nav class="navbar" id="navbar">
