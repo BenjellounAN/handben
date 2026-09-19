@@ -1,540 +1,801 @@
 (() => {
   "use strict";
 
+  const STORAGE_KEY = "handben-currency";
+
   const currencies = [
-    { code: "MAD", symbol: "DH", name: "Moroccan Dirham" },
-    { code: "USD", symbol: "$", name: "US Dollar" },
-    { code: "EUR", symbol: "€", name: "Euro" },
-    { code: "GBP", symbol: "£", name: "British Pound" }
+    {
+      code: "MAD",
+      symbol: "DH",
+      name: "Moroccan Dirham"
+    },
+    {
+      code: "USD",
+      symbol: "$",
+      name: "US Dollar"
+    },
+    {
+      code: "EUR",
+      symbol: "€",
+      name: "Euro"
+    },
+    {
+      code: "GBP",
+      symbol: "£",
+      name: "British Pound"
+    }
   ];
 
-  const supported = new Set(
-    currencies.map(item => item.code)
+  const supportedCurrencies = new Set(
+    currencies.map(currency => currency.code)
   );
 
-  const style = document.createElement("style");
+  /* =====================================================
+     STYLES
+  ===================================================== */
 
-  style.id = "handben-currency-switcher-styles";
-
-  style.textContent = `
-    .hb-currency {
-      position: absolute;
-      right: 19.6%;
-      top: 72px;
-      z-index: 40;
-      color: #fff;
-      font-family: "DM Sans", Arial, sans-serif;
+  function addStyles() {
+    if (
+      document.getElementById(
+        "handben-side-currency-styles"
+      )
+    ) {
+      return;
     }
 
-    .hb-currency--standalone {
-      position: fixed;
-      top: 16px;
-      right: 16px;
-      z-index: 999;
-      color: #332820;
-    }
+    const style = document.createElement("style");
 
-    .hb-currency__trigger {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-width: 88px;
-      height: 43px;
-      padding: 0 13px;
-      border: 1px solid rgba(255, 255, 255, .3);
-      border-radius: 999px;
-      background: rgba(36, 28, 22, .16);
-      color: inherit;
-      cursor: pointer;
-      box-shadow:
-        0 8px 28px rgba(20, 15, 10, .09),
-        inset 0 1px 0 rgba(255, 255, 255, .22);
-      backdrop-filter: blur(18px) saturate(1.35);
-      -webkit-backdrop-filter: blur(18px) saturate(1.35);
-      transition:
-        background .3s ease,
-        border-color .3s ease,
-        color .3s ease,
-        transform .25s ease,
-        box-shadow .3s ease;
-    }
+    style.id = "handben-side-currency-styles";
 
-    .hb-currency__trigger:hover {
-      transform: translateY(-1px);
-      background: rgba(36, 28, 22, .28);
-      box-shadow:
-        0 12px 32px rgba(20, 15, 10, .14),
-        inset 0 1px 0 rgba(255, 255, 255, .25);
-    }
-
-    .hb-currency__trigger:focus-visible {
-      outline: 2px solid #cdbb9f;
-      outline-offset: 3px;
-    }
-
-    .hb-currency__globe {
-      width: 15px;
-      height: 15px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.55;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      opacity: .88;
-    }
-
-    .hb-currency__code {
-      font-size: 11px;
-      font-weight: 700;
-      line-height: 1;
-      letter-spacing: .12em;
-    }
-
-    .hb-currency__chevron {
-      width: 10px;
-      height: 10px;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.8;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-      transition: transform .3s ease;
-    }
-
-    .hb-currency.is-open .hb-currency__chevron {
-      transform: rotate(180deg);
-    }
-
-    .navbar.scrolled .hb-currency {
-      color: #2f251e;
-    }
-
-    .navbar.scrolled .hb-currency__trigger,
-    .hb-currency--standalone .hb-currency__trigger {
-      background: rgba(255, 255, 255, .66);
-      border-color: rgba(74, 55, 40, .12);
-      box-shadow:
-        0 9px 28px rgba(47, 36, 28, .09),
-        inset 0 1px 0 rgba(255, 255, 255, .7);
-    }
-
-    .navbar.scrolled .hb-currency__trigger:hover,
-    .hb-currency--standalone .hb-currency__trigger:hover {
-      background: rgba(255, 255, 255, .92);
-    }
-
-    .hb-currency__menu {
-      position: absolute;
-      top: calc(100% + 10px);
-      right: 0;
-      width: 218px;
-      padding: 8px;
-      border: 1px solid rgba(74, 55, 40, .11);
-      border-radius: 19px;
-      background: rgba(255, 253, 249, .96);
-      box-shadow:
-        0 24px 65px rgba(39, 28, 20, .18),
-        inset 0 1px 0 rgba(255, 255, 255, .8);
-      backdrop-filter: blur(22px) saturate(1.25);
-      -webkit-backdrop-filter: blur(22px) saturate(1.25);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-7px) scale(.97);
-      transform-origin: top right;
-      transition:
-        opacity .22s ease,
-        visibility .22s ease,
-        transform .28s cubic-bezier(.16, 1, .3, 1);
-    }
-
-    .hb-currency.is-open .hb-currency__menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0) scale(1);
-    }
-
-    .hb-currency__option {
-      display: grid;
-      grid-template-columns: 34px 1fr 18px;
-      align-items: center;
-      gap: 9px;
-      width: 100%;
-      min-height: 48px;
-      padding: 7px 9px;
-      border: 0;
-      border-radius: 13px;
-      background: transparent;
-      color: #41352c;
-      text-align: left;
-      cursor: pointer;
-      transition:
-        background .2s ease,
-        transform .2s ease;
-    }
-
-    .hb-currency__option:hover,
-    .hb-currency__option:focus-visible {
-      background: #f2ece5;
-      outline: 0;
-      transform: translateX(2px);
-    }
-
-    .hb-currency__symbol {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 32px;
-      height: 32px;
-      border-radius: 10px;
-      background: #f1ece6;
-      color: #6f5b49;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    .hb-currency__text {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      min-width: 0;
-    }
-
-    .hb-currency__text strong {
-      color: #2d251f;
-      font-size: 11px;
-      letter-spacing: .04em;
-    }
-
-    .hb-currency__text span {
-      color: #988b80;
-      font-size: 9px;
-      white-space: nowrap;
-    }
-
-    .hb-currency__check {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 17px;
-      height: 17px;
-      border: 1px solid #d8cec4;
-      border-radius: 50%;
-      color: transparent;
-      font-size: 10px;
-    }
-
-    .hb-currency__option[aria-checked="true"] {
-      background: #f7f3ee;
-    }
-
-    .hb-currency__option[aria-checked="true"]
-    .hb-currency__symbol {
-      background: #49372a;
-      color: #fff;
-    }
-
-    .hb-currency__option[aria-checked="true"]
-    .hb-currency__check {
-      border-color: #49372a;
-      background: #49372a;
-      color: #fff;
-    }
-
-    @media (max-width: 1170px) {
-      .hb-currency {
-        right: 19.6vw;
-        top: 6.15vw;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .hb-currency {
-        right: 19.2vw;
-        top: 5.8vw;
+    style.textContent = `
+      .hb-menu-currency {
+        position: relative;
+        z-index: 6;
+        flex-shrink: 0;
+        margin: 0 20px 12px;
+        border: 1px solid rgba(74, 55, 40, .10);
+        border-radius: 19px;
+        background:
+          linear-gradient(
+            135deg,
+            rgba(255, 255, 255, .72),
+            rgba(247, 241, 234, .58)
+          );
+        box-shadow:
+          0 10px 30px rgba(63, 44, 30, .055),
+          inset 0 1px 0 rgba(255, 255, 255, .82);
+        backdrop-filter: blur(18px) saturate(1.25);
+        -webkit-backdrop-filter: blur(18px) saturate(1.25);
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(12px);
+        transition:
+          opacity .65s ease,
+          transform .75s cubic-bezier(.16, 1, .3, 1),
+          border-color .3s ease,
+          box-shadow .3s ease;
       }
 
-      .hb-currency__trigger {
-        min-width: 57px;
-        height: 35px;
-        padding: 0 9px;
-        gap: 6px;
+      .side-navigation.active .hb-menu-currency {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: .88s;
       }
 
-      .hb-currency__globe {
-        display: none;
+      .hb-menu-currency.is-open {
+        border-color: rgba(74, 55, 40, .17);
+        box-shadow:
+          0 15px 38px rgba(63, 44, 30, .09),
+          inset 0 1px 0 rgba(255, 255, 255, .9);
       }
 
-      .hb-currency__code {
+      .hb-menu-currency__trigger {
+        width: 100%;
+        min-height: 66px;
+        padding: 10px 14px;
+        border: 0;
+        background: transparent;
+        display: grid;
+        grid-template-columns: 40px 1fr auto 25px;
+        align-items: center;
+        gap: 11px;
+        color: #4a3728;
+        text-align: left;
+        cursor: pointer;
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "DM Sans",
+          Arial,
+          sans-serif;
+      }
+
+      .hb-menu-currency__trigger:focus-visible {
+        outline: 2px solid #a59782;
+        outline-offset: -3px;
+        border-radius: 17px;
+      }
+
+      .hb-menu-currency__icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 13px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #4a3728;
+        background:
+          linear-gradient(
+            145deg,
+            rgba(255, 255, 255, .95),
+            rgba(236, 226, 216, .74)
+          );
+        border: 1px solid rgba(74, 55, 40, .08);
+        box-shadow:
+          0 7px 18px rgba(74, 55, 40, .075),
+          inset 0 1px 0 rgba(255, 255, 255, .9);
+        transition:
+          transform .45s cubic-bezier(.16, 1, .3, 1),
+          background .3s ease;
+      }
+
+      .hb-menu-currency__trigger:hover
+      .hb-menu-currency__icon {
+        transform: rotate(-7deg) scale(1.06);
+        background: #fff;
+      }
+
+      .hb-menu-currency__icon svg {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.45;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .hb-menu-currency__details {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .hb-menu-currency__label {
+        color: #a59782;
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 1.7px;
+        text-transform: uppercase;
+      }
+
+      .hb-menu-currency__name {
+        color: #4a3728;
+        font-family:
+          Georgia,
+          "Times New Roman",
+          serif;
+        font-size: 14px;
+        line-height: 1.2;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .hb-menu-currency__selected {
+        min-width: 48px;
+        height: 29px;
+        padding: 0 10px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #4a3728;
+        color: #fff;
         font-size: 9px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 1px;
+        box-shadow: 0 6px 16px rgba(74, 55, 40, .16);
       }
 
-      .hb-currency__menu {
-        right: -8px;
-        width: 205px;
+      .hb-menu-currency__arrow {
+        width: 25px;
+        height: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #a59782;
+        transition:
+          transform .45s cubic-bezier(.16, 1, .3, 1),
+          color .3s ease;
       }
 
-      .hb-currency--standalone {
-        top: 10px;
-        right: 10px;
+      .hb-menu-currency__arrow svg {
+        width: 12px;
+        height: 12px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.8;
+        stroke-linecap: round;
+        stroke-linejoin: round;
       }
 
-      .hb-currency--standalone
-      .hb-currency__trigger {
-        min-width: 67px;
-        height: 38px;
-      }
-    }
-
-    @media (max-width: 390px) {
-      .hb-currency {
-        right: 19vw;
+      .hb-menu-currency.is-open
+      .hb-menu-currency__arrow {
+        color: #4a3728;
+        transform: rotate(180deg);
       }
 
-      .hb-currency__menu {
-        right: -12px;
-        width: 196px;
+      .hb-menu-currency__expand {
+        display: grid;
+        grid-template-rows: 0fr;
+        opacity: 0;
+        transition:
+          grid-template-rows .5s cubic-bezier(.16, 1, .3, 1),
+          opacity .3s ease;
       }
-    }
 
-    @media (prefers-reduced-motion: reduce) {
-      .hb-currency * {
-        transition-duration: .01ms !important;
+      .hb-menu-currency.is-open
+      .hb-menu-currency__expand {
+        grid-template-rows: 1fr;
+        opacity: 1;
       }
-    }
-  `;
 
-  document.head.append(style);
+      .hb-menu-currency__expand-inner {
+        min-height: 0;
+        overflow: hidden;
+      }
 
-  function currentCode() {
-    const apiCode = String(
-      window.HandBenCurrency?.code || ""
-    ).toUpperCase();
+      .hb-menu-currency__options {
+        position: relative;
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 7px;
+        margin: 0 11px 11px;
+        padding-top: 11px;
+        border-top: 1px solid rgba(74, 55, 40, .075);
+      }
 
-    if (supported.has(apiCode)) {
-      return apiCode;
-    }
+      .hb-menu-currency__options::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 25%;
+        width: 50%;
+        height: 1px;
+        background:
+          linear-gradient(
+            90deg,
+            transparent,
+            rgba(165, 151, 130, .65),
+            transparent
+          );
+      }
 
+      .hb-menu-currency__option {
+        position: relative;
+        min-width: 0;
+        min-height: 57px;
+        padding: 7px 4px;
+        border: 1px solid transparent;
+        border-radius: 13px;
+        background: rgba(255, 255, 255, .38);
+        color: #77695d;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        font-family:
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          "DM Sans",
+          Arial,
+          sans-serif;
+        transition:
+          transform .3s cubic-bezier(.16, 1, .3, 1),
+          background .25s ease,
+          border-color .25s ease,
+          color .25s ease,
+          box-shadow .3s ease;
+      }
+
+      .hb-menu-currency__option:hover {
+        transform: translateY(-2px);
+        background: rgba(255, 255, 255, .88);
+        border-color: rgba(74, 55, 40, .09);
+        color: #4a3728;
+        box-shadow: 0 8px 18px rgba(74, 55, 40, .07);
+      }
+
+      .hb-menu-currency__option:focus-visible {
+        outline: 2px solid #a59782;
+        outline-offset: 1px;
+      }
+
+      .hb-menu-currency__option-symbol {
+        font-family:
+          Georgia,
+          "Times New Roman",
+          serif;
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      .hb-menu-currency__option-code {
+        font-size: 8px;
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 1px;
+      }
+
+      .hb-menu-currency__check {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 13px;
+        height: 13px;
+        border-radius: 50%;
+        background: #4a3728;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 7px;
+        opacity: 0;
+        transform: scale(.5);
+        transition:
+          opacity .25s ease,
+          transform .35s cubic-bezier(.16, 1, .3, 1);
+      }
+
+      .hb-menu-currency__option[
+        aria-checked="true"
+      ] {
+        background: #4a3728;
+        border-color: #4a3728;
+        color: #fff;
+        box-shadow: 0 9px 20px rgba(74, 55, 40, .17);
+      }
+
+      .hb-menu-currency__option[
+        aria-checked="true"
+      ] .hb-menu-currency__check {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      @media (max-width: 600px) {
+        .hb-menu-currency {
+          margin: 0 11px 9px;
+          border-radius: 17px;
+        }
+
+        .hb-menu-currency__trigger {
+          min-height: 60px;
+          padding: 8px 11px;
+          grid-template-columns:
+            36px 1fr auto 22px;
+          gap: 9px;
+        }
+
+        .hb-menu-currency__icon {
+          width: 36px;
+          height: 36px;
+          border-radius: 11px;
+        }
+
+        .hb-menu-currency__name {
+          font-size: 13px;
+        }
+
+        .hb-menu-currency__selected {
+          min-width: 44px;
+          height: 27px;
+          padding: 0 8px;
+          font-size: 8px;
+        }
+
+        .hb-menu-currency__options {
+          gap: 5px;
+          margin: 0 8px 8px;
+          padding-top: 8px;
+        }
+
+        .hb-menu-currency__option {
+          min-height: 52px;
+          border-radius: 11px;
+        }
+
+        .hb-menu-currency__option-symbol {
+          font-size: 14px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hb-menu-currency,
+        .hb-menu-currency * {
+          transition-duration: .01ms !important;
+        }
+      }
+    `;
+
+    document.head.appendChild(style);
+  }
+
+  /* =====================================================
+     CURRENT CURRENCY
+  ===================================================== */
+
+  function getSavedCurrency() {
     try {
       const saved = String(
-        localStorage.getItem("handben-currency") || ""
+        localStorage.getItem(STORAGE_KEY) || ""
       ).toUpperCase();
 
-      if (supported.has(saved)) {
+      if (supportedCurrencies.has(saved)) {
         return saved;
       }
     } catch (_) {}
 
-    return "USD";
+    return "";
   }
 
-  function createSwitcher() {
-    if (document.querySelector(".hb-currency")) {
-      return;
+  function getCurrentCurrency() {
+    const apiCurrency = String(
+      window.HandBenCurrency?.code || ""
+    ).toUpperCase();
+
+    if (supportedCurrencies.has(apiCurrency)) {
+      return apiCurrency;
     }
 
-    const host = document.querySelector(".navbar");
-    const root = document.createElement("div");
+    return getSavedCurrency() || "USD";
+  }
 
-    root.className =
-      "hb-currency" +
-      (host ? "" : " hb-currency--standalone");
+  function getCurrencyInformation(code) {
+    return currencies.find(
+      currency => currency.code === code
+    ) || currencies[1];
+  }
 
-    root.innerHTML = `
+  /* =====================================================
+     CREATE SWITCHER
+  ===================================================== */
+
+  function createCurrencySwitcher() {
+    if (
+      document.querySelector(
+        ".hb-menu-currency"
+      )
+    ) {
+      return true;
+    }
+
+    const sideMenu = document.querySelector(
+      ".side-navigation"
+    );
+
+    if (!sideMenu) {
+      return false;
+    }
+
+    const footer = sideMenu.querySelector(
+      ".menu-footer"
+    );
+
+    const currencyBox =
+      document.createElement("section");
+
+    currencyBox.className =
+      "hb-menu-currency";
+
+    currencyBox.setAttribute(
+      "aria-label",
+      "Currency settings"
+    );
+
+    currencyBox.innerHTML = `
       <button
-        class="hb-currency__trigger"
+        class="hb-menu-currency__trigger"
         type="button"
-        aria-haspopup="menu"
         aria-expanded="false"
-        aria-label="Change currency"
+        aria-controls="handbenCurrencyOptions"
       >
-        <svg
-          class="hb-currency__globe"
-          viewBox="0 0 24 24"
+        <span
+          class="hb-menu-currency__icon"
           aria-hidden="true"
         >
-          <circle cx="12" cy="12" r="9"/>
-          <path
-            d="M3 12h18
-               M12 3c3 3.4 3 14.6 0 18
-               M12 3c-3 3.4-3 14.6 0 18"
-          />
-        </svg>
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8.5"/>
+            <path d="M3.5 12h17"/>
+            <path
+              d="M12 3.5
+                 c2.8 3.1 2.8 13.9 0 17"
+            />
+            <path
+              d="M12 3.5
+                 c-2.8 3.1-2.8 13.9 0 17"
+            />
+          </svg>
+        </span>
 
-        <span class="hb-currency__code">
+        <span class="hb-menu-currency__details">
+          <span class="hb-menu-currency__label">
+            Shopping currency
+          </span>
+
+          <span class="hb-menu-currency__name">
+            US Dollar
+          </span>
+        </span>
+
+        <span class="hb-menu-currency__selected">
           USD
         </span>
 
-        <svg
-          class="hb-currency__chevron"
-          viewBox="0 0 12 12"
+        <span
+          class="hb-menu-currency__arrow"
           aria-hidden="true"
         >
-          <path d="m2.5 4.25 3.5 3.5 3.5-3.5"/>
-        </svg>
+          <svg viewBox="0 0 12 12">
+            <path d="m2.5 4.25 3.5 3.5 3.5-3.5"/>
+          </svg>
+        </span>
       </button>
 
-      <div
-        class="hb-currency__menu"
-        role="menu"
-        aria-label="Choose currency"
-      >
-        ${currencies.map(item => `
-          <button
-            class="hb-currency__option"
-            type="button"
-            role="menuitemradio"
-            aria-checked="false"
-            data-currency="${item.code}"
+      <div class="hb-menu-currency__expand">
+        <div class="hb-menu-currency__expand-inner">
+          <div
+            class="hb-menu-currency__options"
+            id="handbenCurrencyOptions"
+            role="radiogroup"
+            aria-label="Choose your currency"
           >
-            <span class="hb-currency__symbol">
-              ${item.symbol}
-            </span>
+            ${currencies.map(currency => `
+              <button
+                class="hb-menu-currency__option"
+                type="button"
+                role="radio"
+                aria-checked="false"
+                aria-label="${currency.name}"
+                data-currency="${currency.code}"
+              >
+                <span
+                  class="hb-menu-currency__check"
+                  aria-hidden="true"
+                >
+                  ✓
+                </span>
 
-            <span class="hb-currency__text">
-              <strong>${item.code}</strong>
-              <span>${item.name}</span>
-            </span>
+                <span
+                  class="hb-menu-currency__option-symbol"
+                >
+                  ${currency.symbol}
+                </span>
 
-            <span class="hb-currency__check">
-              ✓
-            </span>
-          </button>
-        `).join("")}
+                <span
+                  class="hb-menu-currency__option-code"
+                >
+                  ${currency.code}
+                </span>
+              </button>
+            `).join("")}
+          </div>
+        </div>
       </div>
     `;
 
-    (host || document.body).append(root);
+    if (footer) {
+      sideMenu.insertBefore(
+        currencyBox,
+        footer
+      );
+    } else {
+      sideMenu.appendChild(currencyBox);
+    }
 
-    const trigger = root.querySelector(
-      ".hb-currency__trigger"
-    );
+    const trigger =
+      currencyBox.querySelector(
+        ".hb-menu-currency__trigger"
+      );
+
+    const selectedCode =
+      currencyBox.querySelector(
+        ".hb-menu-currency__selected"
+      );
+
+    const selectedName =
+      currencyBox.querySelector(
+        ".hb-menu-currency__name"
+      );
 
     const options = [
-      ...root.querySelectorAll(
-        ".hb-currency__option"
+      ...currencyBox.querySelectorAll(
+        ".hb-menu-currency__option"
       )
     ];
 
-    const close = () => {
-      root.classList.remove("is-open");
+    /* =====================================================
+       OPEN AND CLOSE
+    ===================================================== */
+
+    function openSwitcher() {
+      currencyBox.classList.add("is-open");
+
+      trigger.setAttribute(
+        "aria-expanded",
+        "true"
+      );
+    }
+
+    function closeSwitcher() {
+      currencyBox.classList.remove("is-open");
 
       trigger.setAttribute(
         "aria-expanded",
         "false"
       );
-    };
+    }
 
-    const sync = code => {
+    function toggleSwitcher() {
+      if (
+        currencyBox.classList.contains(
+          "is-open"
+        )
+      ) {
+        closeSwitcher();
+      } else {
+        openSwitcher();
+      }
+    }
+
+    /* =====================================================
+       SYNCHRONIZE DISPLAY
+    ===================================================== */
+
+    function synchronizeCurrency(code) {
       const requestedCode = String(
         code || ""
       ).toUpperCase();
 
-      const next = supported.has(requestedCode)
-        ? requestedCode
-        : currentCode();
+      const finalCode =
+        supportedCurrencies.has(requestedCode)
+          ? requestedCode
+          : getCurrentCurrency();
 
-      root.querySelector(
-        ".hb-currency__code"
-      ).textContent = next;
+      const information =
+        getCurrencyInformation(finalCode);
+
+      selectedCode.textContent =
+        information.code;
+
+      selectedName.textContent =
+        information.name;
 
       options.forEach(option => {
         option.setAttribute(
           "aria-checked",
           String(
-            option.dataset.currency === next
+            option.dataset.currency
+              === finalCode
           )
         );
       });
-    };
+    }
+
+    /* =====================================================
+       CHANGE CURRENCY
+    ===================================================== */
+
+    function changeCurrency(code) {
+      if (!supportedCurrencies.has(code)) {
+        return;
+      }
+
+      try {
+        localStorage.setItem(
+          STORAGE_KEY,
+          code
+        );
+      } catch (_) {}
+
+      if (
+        typeof window.HandBenCurrency?.set
+          === "function"
+      ) {
+        window.HandBenCurrency.set(code);
+      } else {
+        window.dispatchEvent(
+          new CustomEvent(
+            "handben:currencychange",
+            {
+              detail: {
+                currency: code
+              }
+            }
+          )
+        );
+      }
+
+      synchronizeCurrency(code);
+      closeSwitcher();
+    }
+
+    /* =====================================================
+       EVENTS
+    ===================================================== */
 
     trigger.addEventListener(
       "click",
       event => {
         event.stopPropagation();
-
-        const open =
-          root.classList.toggle("is-open");
-
-        trigger.setAttribute(
-          "aria-expanded",
-          String(open)
-        );
-
-        if (open) {
-          options.find(
-            option =>
-              option.getAttribute(
-                "aria-checked"
-              ) === "true"
-          )?.focus();
-        }
+        toggleSwitcher();
       }
     );
 
     options.forEach((option, index) => {
       option.addEventListener(
         "click",
-        () => {
-          const code =
-            option.dataset.currency;
+        event => {
+          event.stopPropagation();
 
-          try {
-            localStorage.setItem(
-              "handben-currency",
-              code
-            );
-          } catch (_) {}
-
-          if (
-            typeof window.HandBenCurrency?.set
-              === "function"
-          ) {
-            window.HandBenCurrency.set(code);
-          }
-
-          sync(code);
-          close();
-          trigger.focus();
+          changeCurrency(
+            option.dataset.currency
+          );
         }
       );
 
       option.addEventListener(
         "keydown",
         event => {
-          const keys = [
+          const allowedKeys = [
+            "ArrowRight",
+            "ArrowLeft",
             "ArrowDown",
             "ArrowUp",
             "Home",
             "End"
           ];
 
-          if (!keys.includes(event.key)) {
+          if (
+            !allowedKeys.includes(event.key)
+          ) {
             return;
           }
 
           event.preventDefault();
 
-          let next;
+          let nextIndex = index;
 
           if (event.key === "Home") {
-            next = 0;
+            nextIndex = 0;
           } else if (event.key === "End") {
-            next = options.length - 1;
+            nextIndex =
+              options.length - 1;
+          } else if (
+            event.key === "ArrowRight" ||
+            event.key === "ArrowDown"
+          ) {
+            nextIndex =
+              (index + 1) %
+              options.length;
           } else {
-            next =
+            nextIndex =
               (
-                index +
-                (
-                  event.key === "ArrowDown"
-                    ? 1
-                    : -1
-                ) +
+                index -
+                1 +
                 options.length
               ) % options.length;
           }
 
-          options[next].focus();
+          options[nextIndex].focus();
         }
       );
     });
@@ -542,8 +803,12 @@
     document.addEventListener(
       "click",
       event => {
-        if (!root.contains(event.target)) {
-          close();
+        if (
+          !currencyBox.contains(
+            event.target
+          )
+        ) {
+          closeSwitcher();
         }
       }
     );
@@ -551,8 +816,13 @@
     document.addEventListener(
       "keydown",
       event => {
-        if (event.key === "Escape") {
-          close();
+        if (
+          event.key === "Escape" &&
+          currencyBox.classList.contains(
+            "is-open"
+          )
+        ) {
+          closeSwitcher();
           trigger.focus();
         }
       }
@@ -562,9 +832,11 @@
       "storage",
       event => {
         if (
-          event.key === "handben-currency"
+          event.key === STORAGE_KEY
         ) {
-          sync(event.newValue);
+          synchronizeCurrency(
+            event.newValue
+          );
         }
       }
     );
@@ -572,33 +844,86 @@
     window.addEventListener(
       "handben:currencychange",
       event => {
-        sync(event.detail?.currency);
+        synchronizeCurrency(
+          event.detail?.currency
+        );
       }
     );
 
-    sync();
+    synchronizeCurrency(
+      getCurrentCurrency()
+    );
+
+    /* انتظار نظام العملة الأصلي إن تأخر قليلًا */
 
     let attempts = 0;
 
-    const timer = setInterval(() => {
-      sync();
+    const synchronizationTimer =
+      window.setInterval(() => {
+        synchronizeCurrency(
+          getCurrentCurrency()
+        );
 
-      if (
-        window.HandBenCurrency ||
-        ++attempts > 60
-      ) {
-        clearInterval(timer);
-      }
-    }, 150);
+        attempts++;
+
+        if (
+          window.HandBenCurrency ||
+          attempts >= 60
+        ) {
+          window.clearInterval(
+            synchronizationTimer
+          );
+        }
+      }, 150);
+
+    return true;
   }
 
-  if (document.readyState === "loading") {
+  /* =====================================================
+     INITIALIZATION
+  ===================================================== */
+
+  function initializeCurrencySwitcher() {
+    addStyles();
+
+    if (createCurrencySwitcher()) {
+      return;
+    }
+
+    /*
+     * في حال تم إنشاء القائمة الجانبية
+     * لاحقًا بواسطة Firebase أو JavaScript.
+     */
+
+    const observer =
+      new MutationObserver(() => {
+        if (createCurrencySwitcher()) {
+          observer.disconnect();
+        }
+      });
+
+    observer.observe(
+      document.body,
+      {
+        childList: true,
+        subtree: true
+      }
+    );
+
+    window.setTimeout(() => {
+      observer.disconnect();
+    }, 10000);
+  }
+
+  if (
+    document.readyState === "loading"
+  ) {
     document.addEventListener(
       "DOMContentLoaded",
-      createSwitcher,
+      initializeCurrencySwitcher,
       { once: true }
     );
   } else {
-    createSwitcher();
+    initializeCurrencySwitcher();
   }
 })();
