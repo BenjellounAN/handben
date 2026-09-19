@@ -600,6 +600,22 @@
     } else {
       sideMenu.appendChild(currencyBox);
     }
+    [
+  "touchstart",
+  "touchmove",
+  "touchend",
+  "touchcancel"
+].forEach(eventName => {
+  currencyBox.addEventListener(
+    eventName,
+    event => {
+      event.stopPropagation();
+    },
+    {
+      passive: true
+    }
+  );
+});
 
     const trigger =
       currencyBox.querySelector(
