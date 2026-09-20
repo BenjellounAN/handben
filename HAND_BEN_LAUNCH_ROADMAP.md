@@ -99,6 +99,36 @@ ND BEN — MASTER LAUNCH ROADMAP
 ### البيئات
 
 - [ ] تعريف بيئة **Production**: الموقع الذي يراه العملاء\.
+### تعريف البيئات المعتمدة
+
+#### Production
+- Repository: `BenjellounAN/handben`
+- GitHub Pages source: `main`
+- Publishing folder: `/(root)`
+- Production URL: `https://benjellounan.github.io/handben/`
+- HTTPS: Enabled
+- Firebase project: `handben-9ef15`
+- Media Worker: `handben-media-api`
+- Media storage: `Cloudinary`
+
+#### Test / Sandbox
+- لم يتم إنشاء بيئة Test مستقلة بعد.
+- ستُستخدم لاختبار الطلبات والدفع قبل نقل أي ميزة إلى Production.
+- PayPal Sandbox يجب أن يبقى منفصلًا عن PayPal Live.
+- بيانات الاختبار لا يجب أن تختلط مع الطلبات الحقيقية.
+
+#### Environment Mode
+اسم متغير البيئة المعتمد:
+`HANDBEN_ENV`
+
+القيم المسموحة:
+- `test`
+- `production`
+
+الحالة الحالية:
+`production`
+
+ملاحظة: سيتم تطبيق `HANDBEN_ENV` فعليًا في الخدمات التي تحتاجه قبل بناء نظام الطلبات والدفع.
 - [ ] تعريف بيئة **Test/Sandbox**: الدفع التجريبي والطلبات التجريبية\.
 - [ ] منع بيانات Sandbox من الاختلاط بالطلبات الحقيقية\.
 - [ ] إضافة متغير بيئة يحدد الوضع: `test` أو `production`\.
