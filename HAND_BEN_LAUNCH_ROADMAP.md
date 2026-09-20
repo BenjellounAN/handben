@@ -135,6 +135,48 @@ ND BEN — MASTER LAUNCH ROADMAP
 
 ### جرد الخدمات
 
+### جرد الخدمات الحالي
+
+#### Website / Hosting
+- Repository: `BenjellounAN/handben`
+- Production URL: `https://benjellounan.github.io/handben/`
+- Hosting: GitHub Pages
+- Production branch: `main`
+- Publishing folder: `/(root)`
+
+#### Firebase
+- Project ID: `handben-9ef15`
+- Firebase Authentication: مستخدم لتسجيل دخول المدير.
+- Firebase Realtime Database: مستخدم لبيانات المتجر والـDashboard.
+- لا يتم توثيق أي Firebase Admin Private Key هنا.
+
+#### Cloudflare Workers
+- `handben-media-api`
+  - المسؤول عن رفع الصور والفيديوهات إلى Cloudinary.
+  - محمي بواسطة Firebase Authentication للمدير.
+
+- `currency-location`
+  - المسؤول عن تحديد بلد الزائر واختيار/اقتراح العملة المناسبة.
+
+- `handben-api`
+  - Worker قديم محفوظ حاليًا كنسخة احتياطية.
+  - لا يُعتمد عليه للتطوير الجديد قبل مراجعة الحاجة إليه.
+
+#### Media
+- Primary media provider: `Cloudinary`
+- الصور والفيديوهات تُرفع من Dashboard عبر `handben-media-api`.
+
+#### PayPal
+- Account type: `PayPal Business`
+- Business conversion: مكتمل.
+- Product / Service category: `Miscellaneous and Specialty Retail Shops`
+- Sandbox: متاح ومخصص للاختبارات.
+- Live payments: غير مستخدمة حاليًا.
+- PayPal API integration: لم تبدأ بعد.
+
+#### Email
+- مزود البريد: لم يتم اختياره بعد.
+- سيتم اعتماده في المرحلة 8.
 - [ ] توثيق رابط الموقع النهائي\.
 - [ ] توثيق مشروع Firebase المستخدم، دون تسجيل أسرار\.
 - [ ] توثيق اسم Cloudflare Worker ودوره الحالي\.
