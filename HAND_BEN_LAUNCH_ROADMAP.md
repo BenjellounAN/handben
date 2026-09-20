@@ -185,7 +185,37 @@ ND BEN — MASTER LAUNCH ROADMAP
 - [ ] توثيق مزود الصور الرئيسي\.
 
 ### إدارة الأسرار
+### قائمة الأسرار المعتمدة
 
+الأسرار الحالية:
+- `CLOUDINARY_API_SECRET`
+  - محفوظ فقط داخل Cloudflare Worker Secrets.
+  - لا يُكتب في GitHub أو Frontend.
+
+الأسرار التي ستُضاف لاحقًا:
+- `PAYPAL_CLIENT_SECRET`
+  - سيُنشأ ويُستخدم في المرحلة 5.
+  - سيُحفظ فقط داخل Cloudflare Worker Secrets.
+
+- `EMAIL_API_KEY`
+  - سيُستخدم بعد اختيار مزود البريد في المرحلة 8.
+  - سيُحفظ فقط داخل Cloudflare Worker Secrets.
+
+### متغيرات ليست أسرارًا
+
+هذه القيم ليست Secrets، لكنها تبقى إعدادات للخدمات:
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_CLOUD_NAME`
+- `FIREBASE_PROJECT_ID`
+- `FIREBASE_ADMIN_UID`
+- `ALLOWED_ORIGIN`
+- `HANDBEN_ENV`
+- `PAYPAL_CLIENT_ID` عند إضافته لاحقًا.
+
+ملاحظة:
+- لا يوجد حاليًا Firebase Admin Private Key مستخدم في المشروع.
+- لا ننشئ أو نخزن Firebase Admin Private Key إلا إذا أصبحت هناك حاجة معمارية فعلية له لاحقًا.
+- لا تُكتب أي قيمة سرية فعلية داخل هذا الملف.
 - [ ] التأكد أن GitHub لا يحتوي على PayPal Secret\.
 - [ ] التأكد أن GitHub لا يحتوي على Firebase Admin Private Key\.
 - [ ] الاتفاق أن الأسرار توضع فقط في Cloudflare Worker Secrets\.
